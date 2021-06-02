@@ -1,9 +1,9 @@
 :root {
-    --textColor: rgb(209, 184, 116);
-    --bgColor: rgb(7, 18, 7);
-    --focusColor: rgb(53, 77, 45);
-    --accentColor: rgb(219, 149, 36);
-    --lighterAccentColor: rgb(245, 167, 42);
+    --textColor: rgb(238, 243, 229);
+    --bgColor: rgb(238, 243, 229);
+    --focusColor: rgb(219, 149, 36);
+    --accentColor: rgb(76, 124, 32);
+    --lighterAccentColor: rgb(67, 196, 131);
     --shadowColor: rgba(95, 95, 95, 0.534);
 }
 
@@ -18,15 +18,44 @@ body {
     background-color: var(--bgColor);
     height: 100vh;
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 header {
     background-color: var(--focusColor);
-    height: 50px;
+    height: 64px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+header img {
+    height: 100%;
+    width: 50px;
+    background-color: violet;
+    margin: 0 20px;
+}
+
+header h1 {
+    flex-grow: 10;
+}
+
+header a {
+    flex-grow: 1;
+    text-align: right;
+    padding-right: 20px;
+}
+
+main {
+    width: 100%;
+    height: calc(100% - 64px);
+    display: flex;
+    align-items: stretch;
 }
 
 .button-holder {
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 0;
     padding: 20px;
@@ -37,23 +66,39 @@ button {
     height: 50px;
     border-radius: 50%;
     border: none;
-    background-color: var(--accentColor);
+    background-color: var(--focusColor);
     box-shadow: 1px 1px 1px 1px var(--shadowColor);
     transition: all .20s ease;
+    text-align: center;
 }
 
 button:hover {
     background-color: var(--lighterAccentColor);
-    transform: scale(1.075);
+    transform: scale(1.05);
     box-shadow: 1.5px 1.5px 1px 1px var(--shadowColor);
     transition: all .20s ease;
 }
 
 i {
-    color: var(--focusColor);
+    color: var(--bgColor);
     font-size: 30px;
 }
 
 #accept, #cancel {
     display: none;
+}
+
+.gallery {
+    flex-grow: 1;
+    border-right: 1px solid var(--accentColor);
+}
+
+.side {
+    flex-grow: 0;
+    transition: all .5s ease;
+}
+
+.side-out {
+    flex-grow: 1;
+    transition: all .5s ease;
 }
