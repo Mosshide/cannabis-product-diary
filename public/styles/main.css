@@ -1,5 +1,59 @@
+:root {
+    --textColor: rgb(209, 184, 116);
+    --bgColor: rgb(7, 18, 7);
+    --focusColor: rgb(53, 77, 45);
+    --accentColor: rgb(219, 149, 36);
+    --lighterAccentColor: rgb(245, 167, 42);
+    --shadowColor: rgba(95, 95, 95, 0.534);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    color: var(--textColor);
+}
+
+body {
+    background-color: var(--bgColor);
+    height: 100vh;
+    position: relative;
+}
+
+header {
+    background-color: var(--focusColor);
+    height: 50px;
+}
+
+.button-holder {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--accentColor);
+    box-shadow: 1px 1px 1px 1px var(--shadowColor);
+    transition: all .20s ease;
+}
+
+button:hover {
+    background-color: var(--lighterAccentColor);
+    transform: scale(1.075);
+    box-shadow: 1.5px 1.5px 1px 1px var(--shadowColor);
+    transition: all .20s ease;
+}
+
+i {
+    color: var(--focusColor);
+    font-size: 30px;
+}
+
+#accept, #cancel {
+    display: none;
 }
