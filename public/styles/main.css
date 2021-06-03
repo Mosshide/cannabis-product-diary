@@ -1,10 +1,10 @@
 :root {
-    --textColor: rgb(238, 243, 229);
-    --altTextColor: rgb(49, 51, 46);
+    --altTextColor: rgb(238, 243, 229);
+    --textColor: rgb(49, 51, 46);
     --bgColor: rgb(255, 255, 255);
     --focusColor: rgb(219, 149, 36);
-    --accentColor: rgb(76, 124, 32);
-    --lighterAccentColor: rgb(67, 196, 131);
+    --accentColor: rgba(103, 128, 79, 0.466);
+    --lighterAccentColor: rgb(84, 141, 62);
     --shadowColor: rgba(95, 95, 95, 0.534);
 }
 
@@ -32,10 +32,7 @@ header {
 }
 
 header img {
-    height: 100%;
-    width: 50px;
-    background-color: violet;
-    margin: 0 20px;
+    width: 64px;
 }
 
 header h1 {
@@ -57,10 +54,6 @@ main {
     padding: 10px;
     overflow: hidden;
     position: relative;
-}
-
-h2 {
-    color: var(--altTextColor);
 }
 
 .button-holder {
@@ -111,6 +104,7 @@ i {
 }
 
 .side {
+    background-color: var(--bgColor);
     border-left: 1px solid var(--accentColor);
     position: absolute;
     top: 0;
@@ -127,7 +121,6 @@ i {
 }
 
 form {
-    border: 1px solid var(--accentColor);
     padding: 10px;
 }
 
@@ -136,4 +129,55 @@ form input {
     margin: 10px 0;
     padding: 20px;
     color: var(--altTextColor);
+}
+
+.entry-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.entry-card {
+    width: 250px;
+    height: 200px;
+    background-color: var(--focusColor);
+    margin: 5px;
+    padding: 10px;
+    transition: all .5s ease;
+}
+
+.entry-card h3{
+    margin: 15px;
+}
+
+.entry-card h4{
+    margin: 5px 15px;
+}
+
+.entry-card .rating{
+    margin: 40px 15px;
+}
+
+.fa-cannabis {
+    color: var(--accentColor);
+}
+
+.selected {
+    color: var(--lighterAccentColor);
+}
+
+@media only screen and (max-width: 800px) {
+    .gallery-compact {
+        width: 100%;
+    }
+
+    .side {
+        width: 100%;
+    }
+
+    .side-out {
+        left: 0;
+    }
 }

@@ -1,3 +1,4 @@
+// Floating Buttons
 $("#new").on("click", function() {
     $(".side").toggleClass("side-out");
     $(".gallery").toggleClass("gallery-compact");
