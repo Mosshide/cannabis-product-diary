@@ -6,6 +6,7 @@
     --accentColor: rgba(103, 128, 79, 0.466);
     --lighterAccentColor: rgb(84, 141, 62);
     --shadowColor: rgba(95, 95, 95, 0.534);
+    --badColor: rgb(141, 0, 0);
 }
 
 * {
@@ -47,6 +48,10 @@ header a {
     font-size: 20px;
 }
 
+header a:hover {
+    color: var(--altTextColor);
+}
+
 main {
     width: 100%;
     height: calc(100% - 64px);
@@ -76,8 +81,13 @@ button {
 
 button:hover {
     background-color: var(--lighterAccentColor);
-    transform: scale(1.05);
+    transform: scale(1.03);
     box-shadow: 1.5px 1.5px 1px 1px var(--shadowColor);
+    transition: all .20s ease;
+}
+
+#cancel:hover {
+    background-color: var(--badColor);
     transition: all .20s ease;
 }
 
@@ -124,8 +134,14 @@ form {
     padding: 10px;
 }
 
+form .form-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 form input {
-    width: 100%;
+    width: 80%;
     margin: 10px 0;
     padding: 20px;
     color: var(--altTextColor);
@@ -145,7 +161,19 @@ form input {
     background-color: var(--focusColor);
     margin: 5px;
     padding: 10px;
+    border-radius: 5px;
     transition: all .5s ease;
+}
+
+.entry-card:hover {
+    width: 250px;
+    height: 200px;
+    background-color: var(--focusColor);
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    transform: scale(1.05);
+    transition: all .1s ease;
 }
 
 .entry-card h3{
@@ -157,7 +185,13 @@ form input {
 }
 
 .entry-card .rating{
-    margin: 40px 15px;
+    margin: 35px 15px;
+}
+
+.entry-card hr {
+    border-top: none;
+    border-bottom: 1px solid var(--textColor);
+    margin-top: 15px;
 }
 
 .fa-cannabis {
