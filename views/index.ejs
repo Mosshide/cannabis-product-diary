@@ -4,11 +4,24 @@
     <section class="gallery">
         <h2>Entries</h2>
         <div class="entry-grid">
-            
+            <article class="entry-card" id="entry-card-template">
+                <h3>Product Name</h3>
+                <h4>Company Name</h4>
+                <hr>
+        
+                <div class="rating">
+                    <i class="fas fa-cannabis"></i>
+                    <i class="fas fa-cannabis"></i>
+                    <i class="fas fa-cannabis"></i>
+                    <i class="fas fa-cannabis"></i>
+                    <i class="fas fa-cannabis"></i>
+                </div>
+            </article>
         </div>
+        <script src="scripts/generate-entries.js"></script>
     </section>
     <section class="side">
-        
+        <%- include("parts/create-form"); %>
     </section>
     <section class="button-holder">
         <button id="accept"><i class="fas fa-check"></i></button>

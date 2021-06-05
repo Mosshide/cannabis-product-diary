@@ -20,5 +20,10 @@
     <header>
         <img src="/img/logo.png">
         <h1>Cannabis Product Diary</h1>
-        <a href="#">Login</a>
+        <%  if (user) { %>
+            <a href="/user/logout">Logout</a>
+        <%  }
+        else { %>
+            <a href="/user/register">Register</a>
+        <%  } %>
     </header>

@@ -1,12 +1,13 @@
 <form action="#" method="post">
     <h2>New Entry</h2>
     <div class="form-line">
-        <p>Title:</p>
+        <p>Product:</p>
         <input type="text" name="title" placeholder="Title">
     </div>
     <div class="form-line">
         <p>Rating:</p>
         <div class="rating">
+            <input type="hidden" name="rating" value="0">
             <i class="fas fa-cannabis"></i>
             <i class="fas fa-cannabis"></i>
             <i class="fas fa-cannabis"></i>
@@ -18,4 +19,38 @@
         <p>Content:</p>
         <input type="text" name="content" placeholder="Describe your experience here.">
     </div>
+
+    <!-- hidden -->
+    <input type="hidden" name="author" value="<%= user._id %>">
+
+    <!-- not yet implemented -->
+    <!-- required -->
+    <input type="hidden" name="isDraft" value="false">
+    <input type="hidden" name="isPublic" value="false">
+
+    <!-- optional -->
+    <input type="hidden" name="color" value="">
+    <input type="hidden" name="title" value="">
+    <input type="hidden" name="dateOfExperience" value="">
+    <input type="hidden" name="timeOfDay" value="">
+    <input type="hidden" name="productType" value="">
+    <input type="hidden" name="duration" value="">
+    <input type="hidden" name="quantity" value="">
+    <input type="hidden" name="quantityType" value="">
+    <input type="hidden" name="portionSize" value="">
+    <input type="hidden" name="portionSizeType" value="">
+    <input type="hidden" name="price" value="">
+    <input type="hidden" name="company" value="">
+    <input type="hidden" name="store" value="">
+    <input type="hidden" name="city" value="">
+    <input type="hidden" name="state" value="">
+    <input type="hidden" name="country" value="">
+    <input type="hidden" name="strainType" value="">
+    <input type="hidden" name="strains" value="">
+    <input type="hidden" name="thc" value="">
+    <input type="hidden" name="thca" value="">
+    <input type="hidden" name="d8thc" value="">
+    <input type="hidden" name="d9thc" value="">
+    <input type="hidden" name="cbd" value="">
+    <input type="hidden" name="cbg" value="">
 </form>
