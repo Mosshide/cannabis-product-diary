@@ -16,6 +16,10 @@
     color: var(--textColor);
 }
 
+.invisible {
+    display: none;
+}
+
 body {
     background-color: var(--bgColor);
     height: 100vh;
@@ -40,10 +44,14 @@ header h1 {
     flex-grow: 10;
 }
 
-header a {
+header .account-links {
     flex-grow: 1;
+    font-size: 20px;
     text-align: right;
-    padding-right: 20px;
+    margin-right: 10px
+}
+
+header a {
     text-decoration: none;
     font-size: 20px;
 }
@@ -113,9 +121,13 @@ i {
     transition: all .5s ease;
 }
 
+h2 {
+    margin: 10px;
+}
+
 .side {
     background-color: var(--bgColor);
-    border-left: 1px solid var(--accentColor);
+    border-left: 1px solid var(--textColor);
     position: absolute;
     top: 0;
     height: 100%;
@@ -132,19 +144,53 @@ i {
 
 form {
     padding: 10px;
+    border: 1px solid var(--focusColor);
+    border-radius: 5px;
+}
+
+input {
+    border: 1px solid var(--focusColor);
+}
+
+.center-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.auth-form {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.auth-form button {
+    width: 50%;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.auth-form h2 {
+    margin: 30px;
 }
 
 form .form-line {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 10px;
 }
 
 form input {
     width: 80%;
     margin: 10px 0;
-    padding: 20px;
-    color: var(--altTextColor);
+    padding: 15px;
+    color: var(--textColor);
 }
 
 .entry-grid {
@@ -188,7 +234,7 @@ form input {
     margin: 35px 15px;
 }
 
-.entry-card hr {
+hr {
     border-top: none;
     border-bottom: 1px solid var(--textColor);
     margin-top: 15px;

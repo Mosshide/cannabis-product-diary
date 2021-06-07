@@ -13,17 +13,23 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="/scripts/app.js" defer></script>
 
-    <title>CPD</title>
+    <title><%= siteTitle %></title>
 </head>
 <body>
 
     <header>
         <img src="/img/logo.png">
         <h1>Cannabis Product Diary</h1>
+
         <%  if (user) { %>
-            <a href="/user/logout">Logout</a>
+            <div class="account-links">
+                <a href="/user/logout">Logout</a>
+            </div>
         <%  }
         else { %>
-            <a href="/user/register">Register</a>
+            <div class="account-links">
+                <a href="/user/login">Login</a> | <a href="/user/register">Register</a>
+            </div>
         <%  } %>
+
     </header>

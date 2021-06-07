@@ -1,13 +1,13 @@
-<form action="#" method="post">
+<form action="#" method="post" class="create-form">
     <h2>New Entry</h2>
     <div class="form-line">
         <p>Product:</p>
-        <input type="text" name="title" placeholder="Title">
+        <input type="text" id="product" placeholder="Title">
     </div>
     <div class="form-line">
         <p>Rating:</p>
         <div class="rating">
-            <input type="hidden" name="rating" value="0">
+            <input type="hidden" id="rating" value="0">
             <i class="fas fa-cannabis"></i>
             <i class="fas fa-cannabis"></i>
             <i class="fas fa-cannabis"></i>
@@ -17,40 +17,43 @@
     </div>
     <div class="form-line">
         <p>Content:</p>
-        <input type="text" name="content" placeholder="Describe your experience here.">
+        <input type="text" id="content" placeholder="Describe your experience here.">
+    </div>
+    <div class="form-line">
+        <p id="create-form-info"></p>
     </div>
 
     <!-- hidden -->
-    <input type="hidden" name="author" value="<%= user._id %>">
+    <input type="hidden" id="author" value="<%= user %>">
 
     <!-- not yet implemented -->
     <!-- required -->
-    <input type="hidden" name="isDraft" value="false">
-    <input type="hidden" name="isPublic" value="false">
+    <input type="hidden" id="isDraft" value="false">
+    <input type="hidden" id="isPublic" value="false">
 
     <!-- optional -->
-    <input type="hidden" name="color" value="">
-    <input type="hidden" name="title" value="">
-    <input type="hidden" name="dateOfExperience" value="">
-    <input type="hidden" name="timeOfDay" value="">
-    <input type="hidden" name="productType" value="">
-    <input type="hidden" name="duration" value="">
-    <input type="hidden" name="quantity" value="">
-    <input type="hidden" name="quantityType" value="">
-    <input type="hidden" name="portionSize" value="">
-    <input type="hidden" name="portionSizeType" value="">
-    <input type="hidden" name="price" value="">
-    <input type="hidden" name="company" value="">
-    <input type="hidden" name="store" value="">
-    <input type="hidden" name="city" value="">
-    <input type="hidden" name="state" value="">
-    <input type="hidden" name="country" value="">
-    <input type="hidden" name="strainType" value="">
-    <input type="hidden" name="strains" value="">
-    <input type="hidden" name="thc" value="">
-    <input type="hidden" name="thca" value="">
-    <input type="hidden" name="d8thc" value="">
-    <input type="hidden" name="d9thc" value="">
-    <input type="hidden" name="cbd" value="">
-    <input type="hidden" name="cbg" value="">
+    <input type="hidden" id="color" value="">
+    <input type="hidden" id="title" value="">
+    <input type="hidden" id="dateOfExperience" value="">
+    <input type="hidden" id="timeOfDay" value="">
+    <input type="hidden" id="productType" value="">
+    <input type="hidden" id="duration" value="">
+    <input type="hidden" id="quantity" value="">
+    <input type="hidden" id="quantityType" value="">
+    <input type="hidden" id="portionSize" value="">
+    <input type="hidden" id="portionSizeType" value="">
+    <input type="hidden" id="price" value="">
+    <input type="hidden" id="company" value="">
+    <input type="hidden" id="store" value="">
+    <input type="hidden" id="city" value="">
+    <input type="hidden" id="state" value="">
+    <input type="hidden" id="country" value="">
+    <input type="hidden" id="strainType" value="">
+    <input type="hidden" id="strains" value="">
+    <input type="hidden" id="thc" value="">
+    <input type="hidden" id="thca" value="">
+    <input type="hidden" id="d8thc" value="">
+    <input type="hidden" id="d9thc" value="">
+    <input type="hidden" id="cbd" value="">
+    <input type="hidden" id="cbg" value="">
 </form>

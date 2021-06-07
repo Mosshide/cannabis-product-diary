@@ -1,13 +1,15 @@
-const updateMessages = function() {
-    $.get(`/entry`, function(data) {
-        $(".entry-grid").empty();
+const generateEntries = function() {
+    $(".entry-grid").empty();
+    console.log("Updating entries grid.");
 
-        console.log(`Got ${json.entries.length} entries!`);
+    $.get(`/entry`, function(res) {
+        console.log(`Got ${res.entries.length} entries!`);
 
-        for (let i = 0; i < json.entries.length; i++) {
-            $(".entry-grid").append($("#entry-card-template").clone());
+        for (let i = 0; i < res.entries.length; i++) {
+            let $newEntry = $("#entry-card-template").clone();
+            $(".entry-grid").append($newEntry);
+            $newEntry.toggleClass("invisible");
+            console.log($newEntry);
         };
     });
 }
-
-updateMessages();

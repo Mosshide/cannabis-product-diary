@@ -9,6 +9,9 @@ const authCheck = require('./authCheck');
 router.get("/register", function(req, res) {
     res.render("register",
     {
+        siteTitle: "CPD | Register",
+        info: "",
+        color: "green",
         route: "register",
         user: null
     });
@@ -16,40 +19,53 @@ router.get("/register", function(req, res) {
 
 router.post("/register", async function(req, res) {
     try {
-        const foundAccount = await User.findOne({ username: req.body.username });
+        const foundAccount = await User.findOne({ email: req.body.email });
 
         if (!foundAccount) {
-            const salt = await bcrypt.genSalt(10);
-            const hash = await bcrypt.hash(req.body.password, salt);
-
-            let qAuth = await User.create({
-                username: req.body.username,
-                password: hash,
-                email: "temp@example.com",
-                coin: 0,
-                home: "/",
-                authLevels: [ "Basic" ]
-            });
+            if (req.body.password !== req.body.confirmation) {
+                res.render("register",
+                {
+                    siteTitle: "CPD | Register",
+                    info: "Registration Failed: Your password and confirmation must match!",
+                    color: "red",
+                    user: null
+                });
+            }
+            else {
+                const salt = await bcrypt.genSalt(10);
+                const hash = await bcrypt.hash(req.body.password, salt);
     
-            res.redirect("/");
+                let qAuth = await User.create({
+                    email: req.body.email,
+                    password: hash,
+                    name: "",
+                    bio: "",
+                    dateOfBirth: "",
+                    location: ""
+                });
+        
+                res.redirect("/");
+            }
         }
         else {
-            res.render("user/register",
+            res.render("register",
             {
-                siteTitle: "Won Ventures | Register",
-                info: "Registration Failed: Username taken!",
-                color: "red"
+                siteTitle: "CPD | Register",
+                info: "Registration Failed: An account with this email already exists!",
+                color: "red",
+                user: null
             });
         }
     }
     catch(err) {
         console.log(err);
 
-        res.render("user/register",
+        res.render("register",
         {
-            siteTitle: "Won Ventures | Register",
+            siteTitle: "CPD | Register",
             info: "Registration Failed: Database error!",
-            color: "red"
+            color: "red",
+            user: null
         });
     }
 });
@@ -57,7 +73,7 @@ router.post("/register", async function(req, res) {
 router.get("/login", function(req, res) {
     res.render("login", 
     { 
-        siteTitle: "Won Ventures | Login",
+        siteTitle: "CPD | Login",
         info: "",
         color: "green",
         user: null
@@ -70,36 +86,39 @@ router.post("/login", async function(req, res) {
 
         if (foundAccount) {
             if (await bcrypt.compare(req.body.password, foundAccount.password)) {
-                req.session.currentUser = { _id: foundAccount._id };
+                req.session.currentUser = foundAccount._id;
 
                 res.redirect("/");
             }
             else {
-                res.render("user/login.ejs",
+                res.render("login.ejs",
                 {
-                    siteTitle: "Won Ventures | Login",
+                    siteTitle: "CPD | Login",
                     info: "Login Failed: Password incorrect!",
-                    color: "red"
+                    color: "red",
+                    user: null
                 });
             }
         }
         else {
-            res.render("user/login.ejs",
+            res.render("login.ejs",
             {
-                siteTitle: "Won Ventures | Login",
+                siteTitle: "CPD | Login",
                 info: "Login Failed: Account does not exist!",
-                color: "red"
+                color: "red",
+                user: null
             });
         }
     }
     catch(err) {
         console.log(err);
 
-        res.render("user/login.ejs",
+        res.render("ogin.ejs",
         {
-            siteTitle: "Won Ventures | Login",
+            siteTitle: "CPD | Login",
             info: "Login Failed: Database error!",
-            color: "red"
+            color: "red",
+            user: null
         });
     }
 });
@@ -120,11 +139,9 @@ router.get("/", authCheck, async function(req, res) {
         const foundAccount = await User.findOne({ _id: req.session.currentUser });
 
         if (foundAccount) {
-            res.render("user/show", {
-                siteTitle: "Won Ventures | Account",
-                cash: foundAccount.cash,
-                color: "green",
-                info: ""
+            res.render("user", {
+                siteTitle: "CPD | Account",
+                user: null
             });
         }
         else {

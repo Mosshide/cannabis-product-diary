@@ -37,7 +37,8 @@ app.get("/", authCheck, async function(req, res) {
         const foundAccount = await User.findOne({ _id: req.session.currentUser });
 
         res.render("index", {
-            user: foundAccount
+            siteTitle: "CPD",
+            user: req.session.currentUser
         });
     }
     catch(err) {

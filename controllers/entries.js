@@ -52,7 +52,7 @@ router.post("/", async function(req, res) {
             cbg: req.body.cbg
         });
 
-        res.status(200).end();
+        res.sendStatus(200);
     }
     catch(err) {
         console.log(err);
