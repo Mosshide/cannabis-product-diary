@@ -3,6 +3,8 @@
     --textColor: rgb(49, 51, 46);
     --bgColor: rgb(255, 255, 255);
     --focusColor: rgb(219, 149, 36);
+    --transparentFocusColor: rgba(219, 149, 36, 0.52);
+    --moreTransparentFocusColor: rgba(219, 149, 36, 0.082);
     --accentColor: rgba(103, 128, 79, 0.466);
     --lighterAccentColor: rgb(84, 141, 62);
     --shadowColor: rgba(95, 95, 95, 0.534);
@@ -64,7 +66,6 @@ main {
     width: 100%;
     height: calc(100% - 64px);
     align-items: stretch;
-    padding: 10px;
     overflow: hidden;
     position: relative;
 }
@@ -114,6 +115,7 @@ i {
     height: 100%;
     border-right: none;
     transition: all .5s ease;
+    overflow: auto;
 }
 
 .gallery-compact {
@@ -135,6 +137,7 @@ h2 {
     padding: 20px;
     left: 100%;
     transition: all .5s ease;
+    overflow: auto;
 }
 
 .side-out {
@@ -199,25 +202,23 @@ form input {
     align-content: flex-start;
     justify-content: flex-start;
     align-items: flex-start;
+    padding: 10px;
 }
 
 .entry-card {
     width: 250px;
     height: 200px;
-    background-color: var(--focusColor);
+    background-color: var(--transparentFocusColor);
+    box-shadow: 1px 1px 1px 1px var(--shadowColor);
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
     transition: all .5s ease;
+    position: relative;
 }
 
 .entry-card:hover {
-    width: 250px;
-    height: 200px;
-    background-color: var(--focusColor);
-    margin: 5px;
-    padding: 10px;
-    border-radius: 5px;
+    background-color: var(--moreTransparentFocusColor);
     transform: scale(1.05);
     transition: all .1s ease;
 }
@@ -228,6 +229,12 @@ form input {
 
 .entry-card h4{
     margin: 5px 15px;
+}
+
+.entry-card h6{
+    position: absolute;
+    right: 1%;
+    top: 1%;
 }
 
 .entry-card .rating{

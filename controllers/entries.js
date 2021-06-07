@@ -7,7 +7,7 @@ const Entries = require("../models/entry.js");
 // GET Routes
 router.get("/", async function(req, res) {
     try {
-        let foundEntries = await Entries.find({}).sort('date').limit(50);
+        let foundEntries = await Entries.find({}).sort('-createdAt').limit(50);
 
         res.status(200).send({ entries: foundEntries });
     }
