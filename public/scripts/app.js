@@ -1,7 +1,11 @@
+let $createForm = $(".create-form").clone();
+$(".create-form").remove();
+$createForm.removeClass("invisible");
+
 const openNew = function openNew() {
     $(".side").empty();
 
-    $(".side").append($("#create-form-template").removeClass("invisible").clone());
+    $(".side").append($createForm.clone());
 
     $(".side").addClass("side-out");
     $(".gallery").addClass("gallery-compact");
@@ -42,24 +46,23 @@ $("#accept").on("click", async function() {
         
         const res = await $.post("/entry", 
         {
-            author: $("#author").val(),
+            author: $(".create-form #author").val(),
             isDraft: false,
             isPublic: false,
-            product: $("#product").val(),
-            rating: $("#rating").val(),
-            content: $("#content").val()
+            product: $(".create-form #product").val(),
+            rating: $(".create-form #rating").val(),
+            content: $(".create-form #content").val()
         });
 
-        console.log(res);
-            if (res === "OK") {
-                console.log("Created new entry.");
-                entryGrid.generateEntries();
-    
-                close();
-            }
-            else {
-                $("#create-form-info").text("Error: Unable to post your new entry!");
-            }
+        if (res === "OK") {
+            console.log("Created new entry.");
+            entryGrid.generateEntries();
+
+            close();
+        }
+        else {
+            $("#create-form-info").text("Error: Unable to post your new entry!");
+        }
     }
     catch(err) {
         console.log(err);
