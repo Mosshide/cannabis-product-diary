@@ -1,11 +1,40 @@
-// Floating Buttons
-$("#new").on("click", function() {
-    $(".side").toggleClass("side-out");
-    $(".gallery").toggleClass("gallery-compact");
+const openNew = function openNew() {
+    $(".side").empty();
+
+    $(".side").append($("#create-form-template").removeClass("invisible").clone());
+
+    $(".side").addClass("side-out");
+    $(".gallery").addClass("gallery-compact");
     $("#new").css("display", "none");
     $("#accept").css("display", "initial");
     $("#cancel").css("display", "initial");
-});
+}
+
+const openView = function openView(postNumber) {
+    $(".side").empty();
+
+    let $newView = $("#entry-view-template").clone();
+    $newView.removeClass("invisible");
+    $newView.children().eq(0).text(`${entryGrid.entries[postNumber].product}`);
+    $newView.children().eq(2).text(`${entryGrid.entries[postNumber].content}`);
+    $(".side").append($newView);
+
+    $(".side").addClass("side-out");
+    $(".gallery").addClass("gallery-compact");
+    $("#new").css("display", "none");
+    $("#cancel").css("display", "initial");
+}
+
+const close = function close() {
+    $(".side").removeClass("side-out");
+    $(".gallery").removeClass("gallery-compact");
+    $("#new").css("display", "initial");
+    $("#accept").css("display", "none");
+    $("#cancel").css("display", "none");
+}
+
+// Floating Buttons
+$("#new").on("click", openNew);
 
 $("#accept").on("click", async function() {
     try {
@@ -24,13 +53,9 @@ $("#accept").on("click", async function() {
         console.log(res);
             if (res === "OK") {
                 console.log("Created new entry.");
-                generateEntries();
+                entryGrid.generateEntries();
     
-                $(".side").toggleClass("side-out");
-                $(".gallery").toggleClass("gallery-compact");
-                $("#new").css("display", "initial");
-                $("#accept").css("display", "none");
-                $("#cancel").css("display", "none");
+                close();
             }
             else {
                 $("#create-form-info").text("Error: Unable to post your new entry!");
@@ -41,12 +66,4 @@ $("#accept").on("click", async function() {
     }
 });
 
-$("#cancel").on("click", function() {
-    $(".side").toggleClass("side-out");
-    $(".gallery").toggleClass("gallery-compact");
-    $("#new").css("display", "initial");
-    $("#accept").css("display", "none");
-    $("#cancel").css("display", "none");
-});
-
-generateEntries();
+$("#cancel").on("click", close);

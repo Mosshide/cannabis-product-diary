@@ -4,31 +4,21 @@
     <section class="gallery">
         <h2>Entries</h2>
         <hr>
-        <!-- template for entry -->
-        <article class="entry-card invisible" id="entry-card-template">
-            <h6>0/0/0</h6>
-            <h3>Product Name</h3>
-            <h4>Company Name</h4>
-            <hr>
-    
-            <div class="rating">
-                <i class="fas fa-cannabis"></i>
-                <i class="fas fa-cannabis"></i>
-                <i class="fas fa-cannabis"></i>
-                <i class="fas fa-cannabis"></i>
-                <i class="fas fa-cannabis"></i>
-            </div>
-        </article>
-
+        
         <div class="entry-grid">
+            <!-- template for entry -->
+            <%- include("parts/entry-card"); %>
         </div>
 
         <!-- script to generate entries -->
         <script src="scripts/generate-entries.js"></script>
     </section>
+
+    <%- include("parts/create-form"); %>
+    <%- include("parts/entry-view"); %>
     <section class="side">
-        <%- include("parts/create-form"); %>
     </section>
+
     <section class="button-holder">
         <button id="accept"><i class="fas fa-check"></i></button>
         <button id="cancel"><i class="fas fa-times"></i></button>
