@@ -1,0 +1,307 @@
+:root {
+    --altTextColor: rgb(238, 243, 229);
+    --textColor: rgb(49, 51, 46);
+    --bgColor: rgb(255, 255, 255);
+    --focusColor: rgb(240, 172, 62);
+    --transparentFocusColor: rgba(219, 149, 36, 0.52);
+    --moreTransparentFocusColor: rgba(219, 149, 36, 0.082);
+    --accentColor: rgba(103, 128, 79, 0.466);
+    --lighterAccentColor: rgb(84, 141, 62);
+    --shadowColor: rgba(95, 95, 95, 0.534);
+    --badColor: rgb(141, 0, 0);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: var(--textColor);
+}
+
+.invisible {
+    display: none;
+}
+
+body {
+    background-color: var(--bgColor);
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+header {
+    background-color: var(--focusColor);
+    height: 64px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+header img {
+    width: 64px;
+}
+
+header h1 {
+    flex-grow: 10;
+}
+
+header .account-links {
+    flex-grow: 1;
+    font-size: 20px;
+    text-align: right;
+    margin-right: 10px
+}
+
+header a {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+header a:hover {
+    color: var(--altTextColor);
+}
+
+main {
+    width: 100%;
+    height: calc(100% - 64px);
+    align-items: stretch;
+    overflow: hidden;
+    position: relative;
+}
+
+.button-holder {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--focusColor);
+    box-shadow: 1px 1px 1px 1px var(--shadowColor);
+    transition: all .20s ease;
+    text-align: center;
+}
+
+button:hover {
+    background-color: var(--lighterAccentColor);
+    transform: scale(1.03);
+    box-shadow: 1.5px 1.5px 1px 1px var(--shadowColor);
+    transition: all .20s ease;
+}
+
+#cancel:hover {
+    background-color: var(--badColor);
+    transition: all .20s ease;
+}
+
+i {
+    color: var(--bgColor);
+    font-size: 30px;
+}
+
+#accept, #cancel {
+    display: none;
+}
+
+.gallery {
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    border-right: none;
+    transition: all .5s ease;
+    overflow: auto;
+}
+
+.gallery-compact {
+    width: 50%;
+    transition: all .5s ease;
+}
+
+h2 {
+    margin: 10px;
+}
+
+.side {
+    background-color: var(--bgColor);
+    border-left: 1px solid var(--textColor);
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    padding: 20px;
+    left: 100%;
+    transition: all .5s ease;
+    overflow: auto;
+}
+
+.side-out {
+    left: 50%;
+    transition: all .5s ease;
+}
+
+form {
+    padding: 10px;
+    border: 1px solid var(--focusColor);
+    border-radius: 5px;
+}
+
+.form-line {
+    position: relative;
+}
+
+input {
+    border: 1px solid var(--focusColor);
+}
+
+.center-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.auth-form {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.auth-form button {
+    width: 50%;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.auth-form h2 {
+    margin: 30px;
+}
+
+form .form-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+form input {
+    width: 80%;
+    margin: 10px 0;
+    padding: 15px;
+    color: var(--textColor);
+}
+
+.entry-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.entry-card {
+    width: 250px;
+    height: 200px;
+    background-color: var(--transparentFocusColor);
+    box-shadow: 1px 1px 1px 1px var(--shadowColor);
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all .5s ease;
+    position: relative;
+}
+
+.entry-card:hover {
+    background-color: var(--moreTransparentFocusColor);
+    transform: scale(1.05);
+    transition: all .1s ease;
+}
+
+.entry-card h3{
+    margin: 15px;
+}
+
+.entry-card h4{
+    margin: 5px 15px;
+}
+
+.entry-card h6{
+    position: absolute;
+    right: 1%;
+    top: 1%;
+}
+
+.entry-card .rating{
+    margin: 35px 15px;
+}
+
+hr {
+    border-top: none;
+    border-bottom: 1px solid var(--textColor);
+    margin-top: 15px;
+}
+
+.fa-cannabis {
+    color: var(--accentColor);
+}
+
+.fa-cannabis.editable:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all .1s ease;
+}
+
+.selected {
+    color: var(--lighterAccentColor);
+}
+
+.entry-view .fa-check, .entry-view .fa-times, .entry-view .fa-edit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--transparentFocusColor);
+}
+
+.entry-view .fa-check:hover, .entry-view .fa-times:hover, .entry-view .fa-edit:hover {
+    cursor: pointer;
+    color: var(--focusColor);
+    transition: all .1s ease;
+}
+
+.entry-view .fa-check {
+    right: 32px;
+}
+
+#delete-entry {
+    position: absolute;
+    width: 25%;
+    border-radius: 5px;
+    left: 20px;
+    bottom: 20px;
+    color: var(--altTextColor);
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 800px) {
+    .gallery-compact {
+        width: 100%;
+    }
+
+    .side {
+        width: 100%;
+    }
+
+    .side-out {
+        left: 0;
+    }
+}

@@ -1,0 +1,13 @@
+<%- include("parts/head"); %>
+
+<main class="center-form">
+    <form action="/user/login" method="POST" class="auth-form">
+        <h2>Please Login</h2>
+        <input type="email" name="email">
+        <input type="password" name="password">
+        <button>Login</button>
+        <p style="color: <%= color %>;"><%= info %></p>
+    </form>
+</main>
+
+<%- include("parts/foot"); %>

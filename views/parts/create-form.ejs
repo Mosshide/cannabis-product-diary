@@ -1,0 +1,58 @@
+<form action="#" method="post" class="create-form invisible">
+    <h2>New Entry</h2>
+    <div class="form-line">
+        <p>Product:</p>
+        <input type="text" id="product" placeholder="Title">
+    </div>
+    <div class="form-line">
+        <p>Rating:</p>
+        <div class="rating">
+            <i class="fas fa-cannabis"></i>
+            <i class="fas fa-cannabis"></i>
+            <i class="fas fa-cannabis"></i>
+            <i class="fas fa-cannabis"></i>
+            <i class="fas fa-cannabis"></i>
+        </div>
+    </div>
+    <div class="form-line">
+        <p>Content:</p>
+        <input type="text" id="content" placeholder="Describe your experience here.">
+    </div>
+    <div class="form-line">
+        <p id="create-form-info"></p>
+    </div>
+
+    <!-- hidden -->
+    <input type="hidden" id="author" value="<%= user %>">
+
+    <!-- not yet implemented -->
+    <!-- required -->
+    <input type="hidden" id="isDraft" value="false">
+    <input type="hidden" id="isPublic" value="false">
+
+    <!-- optional -->
+    <input type="hidden" id="color" value="">
+    <input type="hidden" id="title" value="">
+    <input type="hidden" id="dateOfExperience" value="">
+    <input type="hidden" id="timeOfDay" value="">
+    <input type="hidden" id="productType" value="">
+    <input type="hidden" id="duration" value="">
+    <input type="hidden" id="quantity" value="">
+    <input type="hidden" id="quantityType" value="">
+    <input type="hidden" id="portionSize" value="">
+    <input type="hidden" id="portionSizeType" value="">
+    <input type="hidden" id="price" value="">
+    <input type="hidden" id="company" value="">
+    <input type="hidden" id="store" value="">
+    <input type="hidden" id="city" value="">
+    <input type="hidden" id="state" value="">
+    <input type="hidden" id="country" value="">
+    <input type="hidden" id="strainType" value="">
+    <input type="hidden" id="strains" value="">
+    <input type="hidden" id="thc" value="">
+    <input type="hidden" id="thca" value="">
+    <input type="hidden" id="d8thc" value="">
+    <input type="hidden" id="d9thc" value="">
+    <input type="hidden" id="cbd" value="">
+    <input type="hidden" id="cbg" value="">
+</form>

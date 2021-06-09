@@ -1,0 +1,29 @@
+<%- include("parts/head"); %>
+
+<main>
+    <section class="gallery">
+        <h2>Entries</h2>
+        <hr>
+        
+        <div class="entry-grid">
+            <!-- template for entry -->
+            <%- include("parts/entry-card"); %>
+        </div>
+
+        <!-- script to generate entries -->
+        <script src="scripts/generate-entries.js"></script>
+    </section>
+
+    <%- include("parts/create-form"); %>
+    <%- include("parts/entry-view"); %>
+    <section class="side">
+    </section>
+
+    <section class="button-holder">
+        <button id="accept"><i class="fas fa-check"></i></button>
+        <button id="cancel"><i class="fas fa-times"></i></button>
+        <button id="new"><i class="fas fa-plus"></i></button>
+    </section>
+</main>
+
+<%- include("parts/foot"); %>

@@ -1,0 +1,14 @@
+<%- include("parts/head"); %>
+
+<main class="center-form">
+    <form action="/user/register" method="POST" class="auth-form">
+        <h2>Register an Account</h2>
+        <input type="email" name="email" placeholder="Type Your Email Here">
+        <input type="password" name="password" placeholder="Type Your Password Here">
+        <input type="password" name="confirmation" placeholder="Type Your Password Here Again">
+        <button>Register</button>
+        <p style="color: <%= color %>;"><%= info %></p>
+    </form>
+</main>
+
+<%- include("parts/foot"); %>

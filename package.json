@@ -1,0 +1,28 @@
+{
+  "name": "cannabis-product-diary",
+  "version": "1.0.0",
+  "description": "## About Cannabis Product Diary is a web app designed to help consumers of cannabis products keep track of their experiences and share them with others.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.generalassemb.ly:wsushinsky/cannabis-product-diary.git"
+  },
+  "keywords": [
+    "cannabis"
+  ],
+  "author": "Wyatt Sushinsky",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-mongo": "^4.4.1",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.12.12"
+  }
+}
