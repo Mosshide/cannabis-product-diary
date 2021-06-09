@@ -3,11 +3,12 @@ const router = express.Router();
 
 // Import my Data
 const Entries = require("../models/entry.js");
+const authCheck = require('./authCheck');
 
 // GET Routes
-router.get("/", async function(req, res) {
+router.get("/", authCheck, async function(req, res) {
     try {
-        let foundEntries = await Entries.find({}).sort('-createdAt').limit(50);
+        let foundEntries = await Entries.find({ author: req.session.currentUser }).sort('-createdAt').limit(50);
 
         res.status(200).send({ entries: foundEntries });
     }
@@ -17,7 +18,7 @@ router.get("/", async function(req, res) {
 });
 
 // POST Routes
-router.post("/", async function(req, res) {
+router.post("/", authCheck, async function(req, res) {
     try {
         await Entries.create({
             author:  req.body.author,
@@ -60,7 +61,7 @@ router.post("/", async function(req, res) {
 });
 
 // PUT Routes
-router.put("/:id", function(req, res) {
+router.put("/:id", authCheck, function(req, res) {
     Entries.findByIdAndUpdate(req.params.id, { ...req.body },
         (err, entry) => {
             if (err) console.log(err);
@@ -70,7 +71,7 @@ router.put("/:id", function(req, res) {
 });
 
 // DELETE Routes
-router.delete("/:id", async function(req, res) {
+router.delete("/:id", authCheck, async function(req, res) {
     try {
         await Entries.findByIdAndDelete(req.params.id);
 
