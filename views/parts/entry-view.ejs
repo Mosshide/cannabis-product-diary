@@ -1,17 +1,31 @@
-<div class="entry-view invisible" id="entry-view-template">
-    <h2>New Entry</h2>
+<div class="entry-view invisible">
     <div class="form-line">
-        <p>Rating:</p>
-        <div class="rating">
-            <input type="hidden" id="rating" value="0">
-            <i class="fas fa-cannabis"></i>
-            <i class="fas fa-cannabis"></i>
-            <i class="fas fa-cannabis"></i>
-            <i class="fas fa-cannabis"></i>
-            <i class="fas fa-cannabis"></i>
+        <div class="read">
+            <h2 class="product">Unnamed Entry</h2>
+            <hr>
+            <div class="rating">
+    
+            </div>
+            <p class="content">Content:</p>
         </div>
+
+        <div class="edit invisible">
+            <input type="text" name="produt">
+            <hr>
+            <div class="rating">
+    
+            </div>
+            <input type="text" name="content">
+        </div>
+
+        <i class="fas fa-check invisible" id="basic-accept"></i>
+        <i class="fas fa-times invisible" id="basic-cancel"></i>
+        <i class="far fa-edit" id="basic-edit"></i>
     </div>
-    <p>Content:</p>
+
+    <button id="delete-entry">Delete This Entry Forever</button>
+
+    <p id="entry-view-info"></p>
 
     <!-- hidden -->
     <input type="hidden" id="author" value="<%= user %>">

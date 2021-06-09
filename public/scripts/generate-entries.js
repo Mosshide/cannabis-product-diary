@@ -2,7 +2,6 @@ class EntryGrid {
     constructor() {
         this.$grid = $(".entry-grid");
         this.$cardTemplate = $("#entry-card-template").clone();
-        this.$cardTemplate.removeClass("invisible");
         this.entries = null;
 
         this.generateEntries();
@@ -22,11 +21,19 @@ class EntryGrid {
                 
                 let $newEntry = this.$cardTemplate.clone();
                 $newEntry.on("click", function() {
-                    openView(i);
+                    app.openView(i);
                 });
                 $newEntry.children().eq(0).text(`${month}/${day}/${year}`);
                 $newEntry.children().eq(1).text(this.entries[i].product);
                 $newEntry.children().eq(2).text(this.entries[i].content);
+                for (let j = 0; j < 5; j++) {
+                    if (j < this.entries[i].rating) {
+                        $newEntry.children().eq(4).append(`<i class="fas fa-cannabis selected"></i>`);
+                    }
+                    else {
+                        $newEntry.children().eq(4).append(`<i class="fas fa-cannabis"></i>`);
+                    }
+                }
                 this.$grid.append($newEntry);
             };
         });

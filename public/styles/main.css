@@ -151,6 +151,10 @@ form {
     border-radius: 5px;
 }
 
+.form-line {
+    position: relative;
+}
+
 input {
     border: 1px solid var(--focusColor);
 }
@@ -251,8 +255,41 @@ hr {
     color: var(--accentColor);
 }
 
+.fa-cannabis.editable:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all .1s ease;
+}
+
 .selected {
     color: var(--lighterAccentColor);
+}
+
+.entry-view .fa-check, .entry-view .fa-times, .entry-view .fa-edit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--transparentFocusColor);
+}
+
+.entry-view .fa-check:hover, .entry-view .fa-times:hover, .entry-view .fa-edit:hover {
+    cursor: pointer;
+    color: var(--focusColor);
+    transition: all .1s ease;
+}
+
+.entry-view .fa-check {
+    right: 32px;
+}
+
+#delete-entry {
+    position: absolute;
+    width: 25%;
+    border-radius: 5px;
+    left: 20px;
+    bottom: 20px;
+    color: var(--altTextColor);
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 800px) {

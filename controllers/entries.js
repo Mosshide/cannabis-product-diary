@@ -60,13 +60,25 @@ router.post("/", async function(req, res) {
 });
 
 // PUT Routes
-router.put("/:id", async function(req, res) {
-    res.status(417).send("Entry Edit Route Incomplete");
+router.put("/:id", function(req, res) {
+    Entries.findByIdAndUpdate(req.params.id, { ...req.body },
+        (err, entry) => {
+            if (err) console.log(err);
+            res.status(200).send("OK");
+        }
+    );
 });
 
 // DELETE Routes
 router.delete("/:id", async function(req, res) {
-    res.status(417).send("Entry Delete Route Incomplete");
+    try {
+        await Entries.findByIdAndDelete(req.params.id);
+
+        res.status(200).send("OK");
+    }
+    catch (err) {
+        console.log(err);
+    }
 });
 
 module.exports = router;
