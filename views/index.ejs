@@ -3,6 +3,7 @@
 <main>
     <section class="gallery">
         <h2>Entries</h2>
+        <button>Filter</button>
         <hr>
         
         <div class="entry-grid">
@@ -14,8 +15,10 @@
         <script src="scripts/generate-entries.js"></script>
     </section>
 
+    <!-- templates for dynamic content in the aside -->
     <%- include("parts/create-form"); %>
     <%- include("parts/entry-view"); %>
+    <%- include("parts/filters"); %>
     <section class="side">
     </section>
 

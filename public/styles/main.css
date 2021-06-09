@@ -46,7 +46,7 @@ header h1 {
     flex-grow: 10;
 }
 
-header .account-links {
+header .options {
     flex-grow: 1;
     font-size: 20px;
     text-align: right;
@@ -125,6 +125,15 @@ i {
 
 h2 {
     margin: 10px;
+}
+
+.gallery button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border-radius: 5px;
+    height: 35px;
+    width: 75px;
 }
 
 .side {

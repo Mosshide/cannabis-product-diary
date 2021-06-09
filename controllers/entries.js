@@ -8,7 +8,12 @@ const authCheck = require('./authCheck');
 // GET Routes
 router.get("/", authCheck, async function(req, res) {
     try {
-        let foundEntries = await Entries.find({ author: req.session.currentUser }).sort('-createdAt').limit(50);
+        let query = {};
+        if (!req.query.showPublic) query.author = req.session.currentUser;
+
+        let foundEntries = await Entries.find(query)
+        .sort('-createdAt')
+        .limit(50);
 
         res.status(200).send({ entries: foundEntries });
     }

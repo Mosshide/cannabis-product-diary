@@ -7,10 +7,15 @@ class EntryGrid {
         this.generateEntries();
     }
 
-    generateEntries() {
+    generateEntries(filters) {
         this.$grid.empty();
+
+        let urlString = "/entry";
+        if (filters) {
+            if (filters.showPublic) urlString += `?showPublic=true`;
+        }
         
-        $.get(`/entry`, (res) => {
+        $.get(urlString, (res) => {
             this.entries = res.entries;
             
             for (let i = 0; i < this.entries.length; i++) {

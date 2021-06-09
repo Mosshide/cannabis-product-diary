@@ -25,9 +25,16 @@ class Rating {
 class App {
     constructor() {
         //state
+        this.state = "none";
         this.currentEntry = 0;
         this.editing = "none";
         this.rating = null;
+        this.filters = {
+            sort: "-createdAt",
+            search: "",
+            showPublic: false
+        }
+
         //dom elements
         this.$side = $(".side");
         this.$gallery = $(".gallery");
@@ -41,24 +48,44 @@ class App {
         $(".entry-view").remove();
         this.$entryView.removeClass("invisible");
 
+        this.$filters = $(".filters").clone();
+        $(".filters").remove();
+        this.$filters.removeClass("invisible");
+
         // Floating Buttons
         $("#new").on("click", this.openNew);
-        $("#accept").on("click", this.sendNew);
-        $("#cancel").on("click", this.close);
+        $("#accept").on("click", this.accept);
+        $("#cancel").on("click", this.closeSide);
+        $(".gallery button").on("click", this.openFilters);
+    }
+
+    openSide = (showAcceptButton) => {
+        this.$side.addClass("side-out");
+        this.$gallery.addClass("gallery-compact");
+        $("#new").css("display", "none");
+        if (showAcceptButton) $("#accept").css("display", "initial");
+        $("#cancel").css("display", "initial");
+    }
+
+    closeSide = () => {
+        this.state = "none";
+        this.editing = "none";
+        this.$side.removeClass("side-out");
+        this.$gallery.removeClass("gallery-compact");
+        $("#new").css("display", "initial");
+        $("#accept").css("display", "none");
+        $("#cancel").css("display", "none");
     }
 
     openNew = () => {
+        this.state = "create";
         this.$side.empty();
     
         let $newForm = this.$createForm.clone();
         this.rating = new Rating($newForm.find(".rating"), 3);
         this.$side.append($newForm);
     
-        this.$side.addClass("side-out");
-        this.$gallery.addClass("gallery-compact");
-        $("#new").css("display", "none");
-        $("#accept").css("display", "initial");
-        $("#cancel").css("display", "initial");
+        this.openSide(true);
     }
 
     sendNew = async () => {
@@ -79,7 +106,7 @@ class App {
                 console.log("Created new entry.");
                 entryGrid.generateEntries();
 
-                this.close();
+                this.closeSide();
             }
             else {
                 $("#create-form-info").text("Error: Unable to post your new entry!");
@@ -109,6 +136,7 @@ class App {
     }
     
     openView = (entryNumber) => {
+        this.state = "view";
         this.$side.empty();
 
         this.currentEntry = entryNumber;
@@ -141,19 +169,7 @@ class App {
         });
         this.$side.append($newView);
     
-        this.$side.addClass("side-out");
-        this.$gallery.addClass("gallery-compact");
-        $("#new").css("display", "none");
-        $("#cancel").css("display", "initial");
-    }
-    
-    close = () => {
-        this.editing = "none";
-        this.$side.removeClass("side-out");
-        this.$gallery.removeClass("gallery-compact");
-        $("#new").css("display", "initial");
-        $("#accept").css("display", "none");
-        $("#cancel").css("display", "none");
+        this.openSide();
     }
 
     alreadyEditing() {
@@ -164,7 +180,7 @@ class App {
     }
 
     editBasicInfo = () => {
-        if (!this.alreadyEditing()){
+        if (!this.alreadyEditing() && this.state === "view"){
             this.editing = "basic info";
 
             let $line = $(".entry-view").children().eq(0);
@@ -229,6 +245,34 @@ class App {
             $line.find(".fa-times").addClass("invisible");
             $line.find(".fa-edit").removeClass("invisible");
         }
+    }
+
+    openFilters = () => {
+        this.state = "filters";
+        this.$side.empty();
+
+        let $newFilters = this.$filters.clone();
+
+        if (this.filters.showPublic) $newFilters.find("#show-public").prop("checked", true);
+        $newFilters.find("#show-public").on("change", () => {
+            if ($newFilters.find("#show-public").prop("checked")) this.filters.showPublic = true;
+            else this.filters.showPublic = false;
+        })
+
+        this.$side.append($newFilters);
+    
+        this.openSide(true);
+    }
+
+    saveFilters = () => {
+        entryGrid.generateEntries(this.filters);
+
+        this.closeSide();
+    }
+
+    accept = () => {
+        if (this.state === "create") this.sendNew();
+        else if (this.state === "filters") this.saveFilters();
     }
 }
 
