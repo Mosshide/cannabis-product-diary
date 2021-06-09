@@ -82,7 +82,7 @@ router.get("/login", function(req, res) {
 
 router.post("/login", async function(req, res) {
     try {
-        const foundAccount = await User.findOne({ username: req.body.username });
+        const foundAccount = await User.findOne({ email: req.body.email });
 
         if (foundAccount) {
             if (await bcrypt.compare(req.body.password, foundAccount.password)) {
@@ -113,7 +113,7 @@ router.post("/login", async function(req, res) {
     catch(err) {
         console.log(err);
 
-        res.render("ogin.ejs",
+        res.render("login.ejs",
         {
             siteTitle: "CPD | Login",
             info: "Login Failed: Database error!",
