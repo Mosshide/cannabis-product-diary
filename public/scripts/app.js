@@ -33,6 +33,7 @@ class App {
             search: "",
             showPublic: false
         }
+        this.user = null;
 
         //dom elements
         this.$side = $(".side");
@@ -55,7 +56,7 @@ class App {
         $("#new").on("click", this.openNew);
         $("#accept").on("click", this.accept);
         $("#cancel").on("click", this.cancel);
-        $("#edit").on("click", this.editBasicInfo);
+        $("#edit").on("click", this.entryEdit);
         $(".gallery button").on("click", this.openFilters);
     }
 
@@ -137,6 +138,8 @@ class App {
         }
 
         $parent.find("#content-read").text(`${entryGrid.entries[this.currentEntry].content}`);
+        if (entryGrid.entries[this.currentEntry].isPublic) $parent.find("#public-read").text("Anyone Can View this Entry");
+        else $parent.find("#public-read").text("Only You Can View this Entry");
     }
     
     openView = (entryNumber) => {
@@ -171,9 +174,14 @@ class App {
         this.$side.append($newView);
     
         this.openSide(false, true);
+
+        if (entryGrid.entries[this.currentEntry].author !== entryGrid.user) {
+            $("#edit").addClass("invisible");
+            $("#delete-entry").addClass("invisible");
+        }
     }
 
-    editBasicInfo = () => {
+    entryEdit = () => {
         if (this.state === "view"){
             this.state = "edit";
 
@@ -186,6 +194,7 @@ class App {
             $line.find("#product-edit").attr("value", entryGrid.entries[this.currentEntry].product);
             this.rating = new Rating($line.find("#rating-edit"), entryGrid.entries[this.currentEntry].rating);
             $line.find("#content-edit").attr("value", entryGrid.entries[this.currentEntry].content);
+            if (entryGrid.entries[this.currentEntry].isPublic) $line.find("#public-edit").prop("checked", true);
 
             $("#new").addClass("invisible");
             $("#accept").removeClass("invisible");
@@ -204,6 +213,8 @@ class App {
                 entryData.product = $line.find("#product-edit").val();
                 entryData.rating = this.rating.rating;
                 entryData.content = $line.find("#content-edit").val();
+                entryData.isPublic = $line.find("#public-edit").prop("checked");
+                console.log($line.find("#public-edit").prop("checked"));
                 
                 const res = await $.post(`/entry/${entryGrid.entries[this.currentEntry]._id}?_method=PUT`, 
                 {

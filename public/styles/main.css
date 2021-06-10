@@ -8,7 +8,8 @@
     --moreTransparentFocusColor: rgba(219, 149, 36, 0.082);
     --accentColor: rgba(103, 128, 79, 0.466);
     --lighterAccentColor: rgb(84, 141, 62);
-    --shadowColor: rgba(95, 95, 95, 0.534);
+    --shadowColor: rgba(71, 71, 71, 0.534);
+    --lightTextColor: rgb(78, 78, 78);
     --badColor: rgb(141, 0, 0);
 }
 
@@ -294,6 +295,12 @@ hr {
     width: 70%;
 }
 
+.entry-line .info {
+    width:  100%;
+    text-align: center;
+    color: var(--lightTextColor);
+}
+
 .entry-line p {
     margin: 10px;
     border-left: 2px solid var(--focusColor);
@@ -302,9 +309,15 @@ hr {
     padding: 5px;
 }
 
-.entry-line input {
+.entry-line input[type="text"] {
     padding: 10px;
     border-radius: 5px;
+}
+
+.entry-line input[type="checkbox"] {
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
 }
 
 #delete-entry {
@@ -349,6 +362,10 @@ hr {
 @media only screen and (max-width: 800px) {
     .gallery-compact {
         width: 100%;
+    }
+
+    header h1 {
+        display: none;
     }
 
     .side {

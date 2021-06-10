@@ -3,6 +3,7 @@ class EntryGrid {
         this.$grid = $(".entry-grid");
         this.$cardTemplate = $("#entry-card-template").clone();
         this.entries = null;
+        this.user = null;
 
         this.generateEntries();
     }
@@ -16,6 +17,7 @@ class EntryGrid {
         }
         
         $.get(urlString, (res) => {
+            this.user = res.user;
             this.entries = res.entries;
             
             for (let i = 0; i < this.entries.length; i++) {
