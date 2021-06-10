@@ -10,7 +10,7 @@ const user = mongoose.model('users', new mongoose.Schema(
             type: String,
             required: true
         },
-        name: Number,
+        name: String,
         bio: String,
         dateOfBirth: String,
         location: String

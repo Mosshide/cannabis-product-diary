@@ -70,6 +70,26 @@ main {
     position: relative;
 }
 
+.user-main {
+    padding: 10px;
+}
+
+.user-main h3 {
+    margin: 20px;
+}
+
+.account-form {
+    margin: 40px;
+    border: none;
+    width: 100%;
+    text-align: center;
+    border-left: 1px solid var(--focusColor);
+}
+
+.account-form input {
+    width: 300px;
+}
+
 .button-holder {
     position: fixed;
     right: 0;
@@ -344,12 +364,6 @@ hr {
 
 .invisible {
     display: none !important;
-}
-
-.delete-account {
-    border: none;
-    width: 100%;
-    text-align: center;
 }
 
 .hover-bad:hover {

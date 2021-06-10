@@ -1,10 +1,18 @@
 <%- include("parts/head"); %>
 
-<main>
+<main class="user-main">
     <h2>Account Settings</h2>
     <hr>
 
-    <form action="/user?_method=DELETE" method="POST" class="delete-account">
+    <h3>Update Your Name</h3>
+    <form action="/user/name" method="POST" class="account-form">
+        <input type="text" name="name" value="<%= user.name %>" placeholder="Your Name">
+        <input type="submit" value="Update Name">
+        <p style="color: <%= infoColor %>;"><%= info %></p>
+    </form>
+
+    <h3>Delete Your Account</h3>
+    <form action="/user?_method=DELETE" method="POST" class="account-form">
         <input class="hover-bad" type="submit" value="Delete Account">
     </form>
 </main>

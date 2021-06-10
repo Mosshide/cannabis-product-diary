@@ -38,7 +38,7 @@ router.post("/register", async function(req, res) {
                 let qAuth = await User.create({
                     email: req.body.email,
                     password: hash,
-                    name: "",
+                    name: "Anonymous",
                     bio: "",
                     dateOfBirth: "",
                     location: ""
@@ -141,7 +141,9 @@ router.get("/", authCheck, async function(req, res) {
         if (foundAccount) {
             res.render("user", {
                 siteTitle: "CPD | Account",
-                user: foundAccount
+                user: foundAccount,
+                info: "",
+                infoColor: "green"
             });
         }
         else {
@@ -152,6 +154,46 @@ router.get("/", authCheck, async function(req, res) {
     catch {
         console.log(err);
     }
+});
+
+router.get("/name/:id", authCheck, async function(req, res) {
+    try {
+        const foundAccount = await User.findOne({ _id: req.params.id });
+
+        if (foundAccount) {
+            res.status(200).send({ name: foundAccount.name });
+        }
+        else {
+            console.log("User not found! Can't get name!");
+            res.status(404).send("Anonymous");
+        }
+    }
+    catch {
+        console.log(err);
+    }
+});
+
+router.post("/name", authCheck, function(req, res) {
+    User.findByIdAndUpdate(req.session.currentUser, { ...req.body },
+        (err, found) => {
+            if (err){
+                console.log(err);
+
+                res.render("user", {
+                    siteTitle: "CPD | Account",
+                    user: found,
+                    info: "Error: Failed to update name!",
+                    infoColor: "red"
+                });
+            }
+            else res.render("user", {
+                siteTitle: "CPD | Account",
+                user: req.body,
+                info: "Name updated!",
+                infoColor: "green"
+            });
+        }
+    );
 });
 
 router.delete("/", authCheck, async function(req, res) {
