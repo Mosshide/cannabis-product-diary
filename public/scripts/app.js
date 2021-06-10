@@ -117,7 +117,7 @@ class App {
     
                 if (res === "OK") {
                     console.log("Created new entry.");
-                    entryGrid.generateEntries();
+                    entryGrid.generateEntries(this.filters);
     
                     this.closeSide();
                 }
@@ -181,7 +181,7 @@ class App {
             
                     if (res === "OK") {
                         console.log("Deleted entry.");
-                        entryGrid.generateEntries();
+                        entryGrid.generateEntries(this.filters);
             
                         this.closeSide();
                     }
@@ -249,7 +249,7 @@ class App {
 
                     if (res === "OK") {
                         console.log("Edited entry.");
-                        entryGrid.generateEntries();
+                        entryGrid.generateEntries(this.filters);
 
                         this.updateEntryView($line);
                         this.cancelEdit();
