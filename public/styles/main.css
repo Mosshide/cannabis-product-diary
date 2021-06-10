@@ -237,6 +237,7 @@ input {
     margin: 15px 25px;
     color: var(--altTextColor);
     text-shadow: 2px 2px 2px var(--shadowColor);
+    width: 100%;
 }
 
 form .form-line {
