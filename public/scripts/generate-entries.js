@@ -2,6 +2,8 @@ class EntryGrid {
     constructor() {
         this.$grid = $(".entry-grid");
         this.$cardTemplate = $("#entry-card-template").clone();
+        this.$grid.empty();
+        this.$cardTemplate.removeClass("invisible");
         this.entries = null;
         this.user = null;
 
