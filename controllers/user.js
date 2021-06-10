@@ -22,7 +22,16 @@ router.post("/register", async function(req, res) {
         const foundAccount = await User.findOne({ email: req.body.email });
 
         if (!foundAccount) {
-            if (req.body.password !== req.body.confirmation) {
+            if (req.body.password.length < 8) {
+                res.render("register",
+                {
+                    siteTitle: "CPD | Register",
+                    info: "Registration Failed: Your password must be at least 8 characters!",
+                    color: "red",
+                    user: null
+                });
+            }
+            else if (req.body.password !== req.body.confirmation) {
                 res.render("register",
                 {
                     siteTitle: "CPD | Register",

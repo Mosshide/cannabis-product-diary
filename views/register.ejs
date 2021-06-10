@@ -3,9 +3,10 @@
 <main class="center-form">
     <form action="/user/register" method="POST" class="auth-form">
         <h2>Register an Account</h2>
-        <input type="email" name="email" placeholder="Type Your Email Here">
-        <input type="password" name="password" placeholder="Type Your Password Here">
-        <input type="password" name="confirmation" placeholder="Type Your Password Here Again">
+        <input type="email" name="email" placeholder="Type Your Email Here" required>
+        <input type="password" name="password" placeholder="Type Your Password Here" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" required>
+        <input type="password" name="confirmation" placeholder="Type Your Password Here Again" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" required>
+        <p>Your password must be at least 8 characters long and contain at least one each of capital letters, lowercase letters, numbers and special characters ( !@#$%^&* ).</p>
         <button>Register</button>
         <p style="color: <%= color %>;"><%= info %></p>
     </form>
