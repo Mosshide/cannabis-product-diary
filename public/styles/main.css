@@ -211,6 +211,10 @@ input {
     margin: 30px;
 }
 
+.auth-form p {
+    margin: 15px 25px;
+}
+
 form .form-line {
     display: flex;
     justify-content: space-between;

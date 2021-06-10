@@ -22,7 +22,16 @@ router.post("/register", async function(req, res) {
         const foundAccount = await User.findOne({ email: req.body.email });
 
         if (!foundAccount) {
-            if (req.body.password !== req.body.confirmation) {
+            if (req.body.password.length < 8) {
+                res.render("register",
+                {
+                    siteTitle: "CPD | Register",
+                    info: "Registration Failed: Your password must be at least 8 characters!",
+                    color: "red",
+                    user: null
+                });
+            }
+            else if (req.body.password !== req.body.confirmation) {
                 res.render("register",
                 {
                     siteTitle: "CPD | Register",
@@ -149,23 +158,6 @@ router.get("/", authCheck, async function(req, res) {
         else {
             console.log("User not found! Can't show!");
             res.redirect("/user/login");
-        }
-    }
-    catch {
-        console.log(err);
-    }
-});
-
-router.get("/name/:id", authCheck, async function(req, res) {
-    try {
-        const foundAccount = await User.findOne({ _id: req.params.id });
-
-        if (foundAccount) {
-            res.status(200).send({ name: foundAccount.name });
-        }
-        else {
-            console.log("User not found! Can't get name!");
-            res.status(404).send("Anonymous");
         }
     }
     catch {

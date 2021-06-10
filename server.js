@@ -9,6 +9,8 @@ const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
+var favicon = require('serve-favicon');
+app.use(favicon("./public/logo.ico"));
 
 //auth
 const session = require('express-session');

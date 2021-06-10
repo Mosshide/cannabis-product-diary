@@ -22,11 +22,6 @@ class EntryGrid {
                 this.entries = res.entries;
                 
                 for (let i = 0; i < this.entries.length; i++) {
-                    let date = new Date(this.entries[i].createdAt);
-                    let day = date.getDate();
-                    let month = date.getMonth();
-                    let year = date.getFullYear();
-                    
                     let $newEntry = this.$cardTemplate.clone();
                     $newEntry.on("click", function() {
                         app.openView(i);
@@ -42,9 +37,7 @@ class EntryGrid {
                             $newEntry.children().eq(4).append(`<i class="fas fa-cannabis"></i>`);
                         }
                     }
-                    const nameRes = await fetch(`/user/name/${this.entries[i].author}`);
-                    const nameData = await nameRes.json();
-                    $newEntry.children().eq(5).text(`Author: ${nameData.name}`);
+                    $newEntry.children().eq(5).text(`Author: ${this.entries[i].author.name}`);
                     this.$grid.append($newEntry);
                 };
             }

@@ -16,8 +16,12 @@ router.get("/", authCheck, async function(req, res) {
         if (req.query.showPublic) query.$or.push({isPublic: true});
 
         let foundEntries = await Entries.find(query)
-        .sort('-dateOfExperience')
-        .limit(50);
+            .populate({
+                path: 'author',
+                select: 'name _id'
+            })
+            .sort('-dateOfExperience')
+            .limit(50);
 
         res.status(200).send({ entries: foundEntries, user: req.session.currentUser });
     }

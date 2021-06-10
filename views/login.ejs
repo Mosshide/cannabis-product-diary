@@ -3,8 +3,8 @@
 <main class="center-form">
     <form action="/user/login" method="POST" class="auth-form">
         <h2>Please Login</h2>
-        <input type="email" name="email">
-        <input type="password" name="password">
+        <input type="email" name="email" required>
+        <input type="password" name="password" required>
         <button>Login</button>
         <p style="color: <%= color %>;"><%= info %></p>
     </form>

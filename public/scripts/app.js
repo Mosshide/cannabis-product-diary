@@ -102,28 +102,31 @@ class App {
 
     sendNew = async () => {
         try {
-            console.log($("#date-edit"));
-            
-            const res = await $.post("/entry", 
-            {
-                author: $("#author-edit").val(),
-                isDraft: false,
-                isPublic: false,
-                product: $("#product-edit").val(),
-                rating: this.rating.rating,
-                content: $("#content-edit").val(),
-                title: $("#title-edit").val(),
-                dateOfExperience: $("#date-edit").val()
-            });
-
-            if (res === "OK") {
-                console.log("Created new entry.");
-                entryGrid.generateEntries();
-
-                this.closeSide();
+            if ($("#product-edit").val()) {
+                const res = await $.post("/entry", 
+                {
+                    author: $("#author-edit").val(),
+                    isDraft: false,
+                    isPublic: false,
+                    product: $("#product-edit").val(),
+                    rating: this.rating.rating,
+                    content: $("#content-edit").val(),
+                    title: $("#title-edit").val(),
+                    dateOfExperience: $("#date-edit").val()
+                });
+    
+                if (res === "OK") {
+                    console.log("Created new entry.");
+                    entryGrid.generateEntries(this.filters);
+    
+                    this.closeSide();
+                }
+                else {
+                    $("#create-form-info").text("Error: Unable to post your new entry!");
+                }
             }
             else {
-                $("#create-form-info").text("Error: Unable to post your new entry!");
+                $("#create-form-info").text("Please provide a product name!");
             }
         }
         catch(err) {
@@ -131,36 +134,29 @@ class App {
         }
     }
 
-    updateEntryView = async ($parent) => {
-        try {
-            const nameRes = await fetch(`/user/name/${entryGrid.entries[this.currentEntry].author}`);
-            const nameData = await nameRes.json();
-            $("#author-read").text(`Author: ${nameData.name}`);
+    updateEntryView = ($parent) => {
+        $parent.find("#author-read").text(`Author: ${entryGrid.entries[this.currentEntry].author.name}`);
 
-            $parent.find("#title-read").text(entryGrid.entries[this.currentEntry].title);
-            $parent.find("#product-read").text(entryGrid.entries[this.currentEntry].product);
-    
-            let $rating = $parent.find("#rating-read");
-            $rating.empty();
-    
-            for (let i = 0; i < 5; i++) {
-                if (i < entryGrid.entries[this.currentEntry].rating) {
-                    $rating.append(`<i class="fas fa-cannabis selected"></i>`);
-                }
-                else {
-                    $rating.append(`<i class="fas fa-cannabis"></i>`);
-                }
+        $parent.find("#title-read").text(entryGrid.entries[this.currentEntry].title);
+        $parent.find("#product-read").text(entryGrid.entries[this.currentEntry].product);
+
+        let $rating = $parent.find("#rating-read");
+        $rating.empty();
+
+        for (let i = 0; i < 5; i++) {
+            if (i < entryGrid.entries[this.currentEntry].rating) {
+                $rating.append(`<i class="fas fa-cannabis selected"></i>`);
             }
+            else {
+                $rating.append(`<i class="fas fa-cannabis"></i>`);
+            }
+        }
 
-            $parent.find("#date-read").text(entryGrid.entries[this.currentEntry].dateOfExperience);
-    
-            $parent.find("#content-read").text(entryGrid.entries[this.currentEntry].content);
-            if (entryGrid.entries[this.currentEntry].isPublic) $parent.find("#public-read").text("Anyone Can View this Entry");
-            else $parent.find("#public-read").text("Only You Can View this Entry");
-        }
-        catch(err) {
-            console.log(err);
-        }
+        $parent.find("#date-read").text(entryGrid.entries[this.currentEntry].dateOfExperience);
+
+        $parent.find("#content-read").text(entryGrid.entries[this.currentEntry].content);
+        if (entryGrid.entries[this.currentEntry].isPublic) $parent.find("#public-read").text("Anyone Can View this Entry");
+        else $parent.find("#public-read").text("Only You Can View this Entry");
     }
     
     openView = (entryNumber) => {
@@ -185,7 +181,7 @@ class App {
             
                     if (res === "OK") {
                         console.log("Deleted entry.");
-                        entryGrid.generateEntries();
+                        entryGrid.generateEntries(this.filters);
             
                         this.closeSide();
                     }
@@ -201,7 +197,7 @@ class App {
         
             this.openSide(false, true);
     
-            if (entryGrid.entries[this.currentEntry].author !== entryGrid.user) {
+            if (entryGrid.entries[this.currentEntry].author._id !== entryGrid.user) {
                 $("#edit").addClass("invisible");
                 $("#delete-entry").addClass("invisible");
             }
@@ -234,31 +230,36 @@ class App {
     saveEdit = async () => {
         try {
             if (this.state === "edit") {
-                let $line = $(".entry-view").children().eq(0);
+                if ($("#product-edit").val()) {
+                    let $line = $(".entry-view").children().eq(0);
 
-                let entryData = entryGrid.entries[this.currentEntry];
-                entryData.title = $line.find("#title-edit").val();
-                entryData.product = $line.find("#product-edit").val();
-                entryData.rating = this.rating.rating;
-                entryData.dateOfExperience = $line.find("#date-edit").val();
-                entryData.content = $line.find("#content-edit").val();
-                entryData.isPublic = $line.find("#public-edit").prop("checked");
-                console.log($line.find("#public-edit").prop("checked"));
-                
-                const res = await $.post(`/entry/${entryGrid.entries[this.currentEntry]._id}?_method=PUT`, 
-                {
-                    ...entryData
-                });
+                    let entryData = entryGrid.entries[this.currentEntry];
+                    entryData.title = $line.find("#title-edit").val();
+                    entryData.product = $line.find("#product-edit").val();
+                    entryData.rating = this.rating.rating;
+                    entryData.dateOfExperience = $line.find("#date-edit").val();
+                    entryData.content = $line.find("#content-edit").val();
+                    entryData.isPublic = $line.find("#public-edit").prop("checked");
+                    console.log($line.find("#public-edit").prop("checked"));
+                    
+                    const res = await $.post(`/entry/${entryGrid.entries[this.currentEntry]._id}?_method=PUT`, 
+                    {
+                        ...entryData
+                    });
 
-                if (res === "OK") {
-                    console.log("Edited entry.");
-                    entryGrid.generateEntries();
+                    if (res === "OK") {
+                        console.log("Edited entry.");
+                        entryGrid.generateEntries(this.filters);
 
-                    this.updateEntryView($line);
-                    this.cancelEdit();
+                        this.updateEntryView($line);
+                        this.cancelEdit();
+                    }
+                    else {
+                        $("#entry-view-info").text("Error: Unable to edit your entry!");
+                    }
                 }
                 else {
-                    $("#entry-view-info").text("Error: Unable to edit your entry!");
+                    $("#entry-view-info").text("Please provide a product name!");
                 }
             }
         }
@@ -272,6 +273,8 @@ class App {
             this.state = "view";
 
             let $line = $(".entry-view").children().eq(0);
+
+            $("#entry-view-info").text("");
 
             $line.find(".read").removeClass("invisible");
             $line.find(".edit").addClass("invisible");
