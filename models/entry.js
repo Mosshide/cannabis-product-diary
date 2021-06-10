@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 
-const entry = mongoose.model('entries', new mongoose.Schema(
+const entry = mongoose.model("entries", new mongoose.Schema(
 	{
 		author:  { 
 			type: mongoose.Schema.Types.ObjectId, 
-			ref: "User",
-			required: true },
+			ref: "users",
+			required: true
+		},
 		isDraft: {
             type: Boolean,
             required: true

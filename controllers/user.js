@@ -156,23 +156,6 @@ router.get("/", authCheck, async function(req, res) {
     }
 });
 
-router.get("/name/:id", authCheck, async function(req, res) {
-    try {
-        const foundAccount = await User.findOne({ _id: req.params.id });
-
-        if (foundAccount) {
-            res.status(200).send({ name: foundAccount.name });
-        }
-        else {
-            console.log("User not found! Can't get name!");
-            res.status(404).send("Anonymous");
-        }
-    }
-    catch {
-        console.log(err);
-    }
-});
-
 router.post("/name", authCheck, function(req, res) {
     User.findByIdAndUpdate(req.session.currentUser, { ...req.body },
         (err, found) => {
