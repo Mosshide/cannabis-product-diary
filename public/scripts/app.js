@@ -102,28 +102,31 @@ class App {
 
     sendNew = async () => {
         try {
-            console.log($("#date-edit"));
-            
-            const res = await $.post("/entry", 
-            {
-                author: $("#author-edit").val(),
-                isDraft: false,
-                isPublic: false,
-                product: $("#product-edit").val(),
-                rating: this.rating.rating,
-                content: $("#content-edit").val(),
-                title: $("#title-edit").val(),
-                dateOfExperience: $("#date-edit").val()
-            });
-
-            if (res === "OK") {
-                console.log("Created new entry.");
-                entryGrid.generateEntries();
-
-                this.closeSide();
+            if ($("#product-edit").val()) {
+                const res = await $.post("/entry", 
+                {
+                    author: $("#author-edit").val(),
+                    isDraft: false,
+                    isPublic: false,
+                    product: $("#product-edit").val(),
+                    rating: this.rating.rating,
+                    content: $("#content-edit").val(),
+                    title: $("#title-edit").val(),
+                    dateOfExperience: $("#date-edit").val()
+                });
+    
+                if (res === "OK") {
+                    console.log("Created new entry.");
+                    entryGrid.generateEntries();
+    
+                    this.closeSide();
+                }
+                else {
+                    $("#create-form-info").text("Error: Unable to post your new entry!");
+                }
             }
             else {
-                $("#create-form-info").text("Error: Unable to post your new entry!");
+                $("#create-form-info").text("Please provide a product name!");
             }
         }
         catch(err) {
