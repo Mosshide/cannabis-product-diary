@@ -1,8 +1,9 @@
 :root {
-    --altTextColor: rgb(238, 243, 229);
-    --textColor: rgb(49, 51, 46);
+    --altTextColor: rgb(255, 255, 255);
+    --textColor: rgb(64, 66, 61);
+    /* --textColor: rgb(49, 51, 46); */
     --bgColor: rgb(255, 255, 255);
-    --focusColor: rgb(240, 172, 62);
+    --focusColor: rgb(235, 190, 119);
     --transparentFocusColor: rgba(219, 149, 36, 0.52);
     --moreTransparentFocusColor: rgba(219, 149, 36, 0.082);
     --accentColor: rgba(103, 128, 79, 0.466);
@@ -16,10 +17,6 @@
     margin: 0;
     padding: 0;
     color: var(--textColor);
-}
-
-.invisible {
-    display: none;
 }
 
 body {
@@ -44,6 +41,7 @@ header img {
 
 header h1 {
     flex-grow: 10;
+    /* text-shadow: 2px 2px 1px var(--shadowColor); */
 }
 
 header .options {
@@ -60,6 +58,7 @@ header a {
 
 header a:hover {
     color: var(--altTextColor);
+    transition: all .20s ease;
 }
 
 main {
@@ -86,6 +85,8 @@ button {
     box-shadow: 1px 1px 1px 1px var(--shadowColor);
     transition: all .20s ease;
     text-align: center;
+    color: var(--textColor);
+    cursor: pointer;
 }
 
 button:hover {
@@ -93,24 +94,20 @@ button:hover {
     transform: scale(1.03);
     box-shadow: 1.5px 1.5px 1px 1px var(--shadowColor);
     transition: all .20s ease;
-}
-
-#cancel:hover {
-    background-color: var(--badColor);
-    transition: all .20s ease;
+    color: var(--altTextColor);
 }
 
 i {
-    color: var(--bgColor);
+    color: var(--textColor);
     font-size: 30px;
 }
 
-#accept, #cancel {
-    display: none;
+button:hover i {
+    color: var(--altTextColor);
 }
 
 .gallery {
-    padding: 10px;
+    padding: 20px;
     width: 100%;
     height: 100%;
     border-right: none;
@@ -129,7 +126,7 @@ h2 {
 
 .gallery button {
     position: absolute;
-    top: 15px;
+    top: 25px;
     right: 20px;
     border-radius: 5px;
     height: 35px;
@@ -158,10 +155,6 @@ form {
     padding: 10px;
     border: 1px solid var(--focusColor);
     border-radius: 5px;
-}
-
-.form-line {
-    position: relative;
 }
 
 input {
@@ -228,6 +221,7 @@ form input {
     border-radius: 5px;
     transition: all .5s ease;
     position: relative;
+    cursor: pointer;
 }
 
 .entry-card:hover {
@@ -236,26 +230,26 @@ form input {
     transition: all .1s ease;
 }
 
-.entry-card h3{
+.entry-card h3 {
     margin: 15px;
 }
 
-.entry-card h4{
-    margin: 5px 15px;
+.entry-card h4, h5 {
+    margin: 15px 15px;
 }
 
-.entry-card h6{
+.entry-card h6 {
     position: absolute;
     right: 1%;
     top: 1%;
 }
 
-.entry-card .rating{
-    margin: 35px 15px;
+.entry-card .rating {
+    margin: 20px 15px;
 }
 
 hr {
-    border-top: none;
+    border: none;
     border-bottom: 1px solid var(--textColor);
     margin-top: 15px;
 }
@@ -274,21 +268,43 @@ hr {
     color: var(--lighterAccentColor);
 }
 
-.entry-view .fa-check, .entry-view .fa-times, .entry-view .fa-edit {
-    position: absolute;
-    right: 0;
-    top: 0;
-    color: var(--transparentFocusColor);
+.entry-line .read, .entry-line .edit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 
-.entry-view .fa-check:hover, .entry-view .fa-times:hover, .entry-view .fa-edit:hover {
-    cursor: pointer;
-    color: var(--focusColor);
-    transition: all .1s ease;
+.entry-line hr {
+    width: 100%;
 }
 
-.entry-view .fa-check {
-    right: 32px;
+.entry-line .rating {
+    margin: 20px;
+}
+
+.entry-line .left {
+    margin: 10px;
+    margin-right: 0;
+    width: 20%;
+}
+
+.entry-line .right {
+    margin: 10px;
+    margin-left: 5px;
+    width: 70%;
+}
+
+.entry-line p {
+    margin: 10px;
+    border-left: 2px solid var(--focusColor);
+    border-radius: 5px;
+    min-height: 50px;
+    padding: 5px;
+}
+
+.entry-line input {
+    padding: 10px;
+    border-radius: 5px;
 }
 
 #delete-entry {
@@ -297,9 +313,38 @@ hr {
     border-radius: 5px;
     left: 20px;
     bottom: 20px;
-    color: var(--altTextColor);
     font-weight: bold;
 }
+
+.filter-box {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.filter-box #show-public {
+    width: 25px;
+    height: 25px;
+    margin: 10px;
+}
+
+.invisible {
+    display: none !important;
+}
+
+.delete-account {
+    border: none;
+    width: 100%;
+    text-align: center;
+}
+
+.hover-bad:hover {
+    background-color: var(--badColor);
+    transition: all .2s ease;
+    color: var(--altTextColor);
+}
+
 
 @media only screen and (max-width: 800px) {
     .gallery-compact {

@@ -1,8 +1,11 @@
 <%- include("parts/head"); %>
 
 <main>
-    <form action="/user?_method=DELETE" method="POST">
-        <input type="submit" value="Delete Account">
+    <h2>Account Settings</h2>
+    <hr>
+
+    <form action="/user?_method=DELETE" method="POST" class="delete-account">
+        <input class="hover-bad" type="submit" value="Delete Account">
     </form>
 </main>
 

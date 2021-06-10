@@ -27,7 +27,6 @@ class App {
         //state
         this.state = "none";
         this.currentEntry = 0;
-        this.editing = "none";
         this.rating = null;
         this.filters = {
             sort: "-createdAt",
@@ -55,16 +54,18 @@ class App {
         // Floating Buttons
         $("#new").on("click", this.openNew);
         $("#accept").on("click", this.accept);
-        $("#cancel").on("click", this.closeSide);
+        $("#cancel").on("click", this.cancel);
+        $("#edit").on("click", this.editBasicInfo);
         $(".gallery button").on("click", this.openFilters);
     }
 
-    openSide = (showAcceptButton) => {
+    openSide = (showAcceptButton = false, showEditButton = false) => {
         this.$side.addClass("side-out");
         this.$gallery.addClass("gallery-compact");
-        $("#new").css("display", "none");
-        if (showAcceptButton) $("#accept").css("display", "initial");
-        $("#cancel").css("display", "initial");
+        $("#new").addClass("invisible");
+        if (showAcceptButton) $("#accept").removeClass("invisible");
+        if (showEditButton) $("#edit").removeClass("invisible");
+        $("#cancel").removeClass("invisible");
     }
 
     closeSide = () => {
@@ -72,9 +73,10 @@ class App {
         this.editing = "none";
         this.$side.removeClass("side-out");
         this.$gallery.removeClass("gallery-compact");
-        $("#new").css("display", "initial");
-        $("#accept").css("display", "none");
-        $("#cancel").css("display", "none");
+        $("#new").removeClass("invisible");
+        $("#accept").addClass("invisible");
+        $("#cancel").addClass("invisible");
+        $("#edit").addClass("invisible");
     }
 
     openNew = () => {
@@ -94,12 +96,13 @@ class App {
             
             const res = await $.post("/entry", 
             {
-                author: $(".create-form #author").val(),
+                author: $("#author-edit").val(),
                 isDraft: false,
                 isPublic: false,
-                product: $(".create-form #product").val(),
+                product: $("#product-edit").val(),
                 rating: this.rating.rating,
-                content: $(".create-form #content").val()
+                content: $("#content-edit").val(),
+                title: $("#title-edit").val()
             });
 
             if (res === "OK") {
@@ -117,10 +120,11 @@ class App {
         }
     }
 
-    updateBasicInfo = ($parent) => {
-        $parent.find(".product").text(`${entryGrid.entries[this.currentEntry].product}`);
+    updateEntryView = ($parent) => {
+        $parent.find("#title-read").text(`${entryGrid.entries[this.currentEntry].title}`);
+        $parent.find("#product-read").text(`${entryGrid.entries[this.currentEntry].product}`);
 
-        let $rating = $parent.find(".rating");
+        let $rating = $parent.find("#rating-read");
         $rating.empty();
 
         for (let i = 0; i < 5; i++) {
@@ -132,7 +136,7 @@ class App {
             }
         }
 
-        $parent.find(".content").text(`Content: ${entryGrid.entries[this.currentEntry].content}`);
+        $parent.find("#content-read").text(`${entryGrid.entries[this.currentEntry].content}`);
     }
     
     openView = (entryNumber) => {
@@ -143,10 +147,7 @@ class App {
     
         let $newView = this.$entryView.clone();
 
-        this.updateBasicInfo($newView);
-        $newView.find("#basic-edit").on("click", this.editBasicInfo);
-        $newView.find("#basic-accept").on("click", this.saveBasicInfo);
-        $newView.find("#basic-cancel").on("click", this.cancelBasicInfo);
+        this.updateEntryView($newView);
         $newView.find("#delete-entry").on("click", async () => {
             try {
                 console.log(entryGrid.entries);
@@ -157,7 +158,7 @@ class App {
                     console.log("Deleted entry.");
                     entryGrid.generateEntries();
         
-                    this.close();
+                    this.closeSide();
                 }
                 else {
                     $("#entry-view-info").text("Error: Unable to delete your entry!");
@@ -169,58 +170,52 @@ class App {
         });
         this.$side.append($newView);
     
-        this.openSide();
-    }
-
-    alreadyEditing() {
-        if (this.editing !== "none") {
-            $("#entry-view-info").text(`Please finish editing this entry's ${this.editing} first!`);
-        }
-        else return false;
+        this.openSide(false, true);
     }
 
     editBasicInfo = () => {
-        if (!this.alreadyEditing() && this.state === "view"){
-            this.editing = "basic info";
+        if (this.state === "view"){
+            this.state = "edit";
 
             let $line = $(".entry-view").children().eq(0);
 
             $line.find(".read").addClass("invisible");
             $line.find(".edit").removeClass("invisible");
 
-            $line.find(".edit").children().eq(0).attr("value", entryGrid.entries[this.currentEntry].product);
-            this.rating = new Rating($line.find(".edit .rating"), entryGrid.entries[this.currentEntry].rating);
-            $line.find(".edit").children().eq(3).attr("value", entryGrid.entries[this.currentEntry].content);
+            $line.find("#title-edit").attr("value", entryGrid.entries[this.currentEntry].title);
+            $line.find("#product-edit").attr("value", entryGrid.entries[this.currentEntry].product);
+            this.rating = new Rating($line.find("#rating-edit"), entryGrid.entries[this.currentEntry].rating);
+            $line.find("#content-edit").attr("value", entryGrid.entries[this.currentEntry].content);
 
-            $line.find(".fa-check").removeClass("invisible");
-            $line.find(".fa-times").removeClass("invisible");
-            $line.find(".fa-edit").addClass("invisible");
+            $("#new").addClass("invisible");
+            $("#accept").removeClass("invisible");
+            $("#cancel").removeClass("invisible");
+            $("#edit").addClass("invisible");
         }
     }
 
-    saveBasicInfo = async () => {
+    saveEdit = async () => {
         try {
-            if (this.editing === "basic info") {
+            if (this.state === "edit") {
                 let $line = $(".entry-view").children().eq(0);
 
                 let entryData = entryGrid.entries[this.currentEntry];
-                entryData.product = $line.find(".edit").children().eq(0).val();
+                entryData.title = $line.find("#title-edit").val();
+                entryData.product = $line.find("#product-edit").val();
                 entryData.rating = this.rating.rating;
-                entryData.content = $line.find(".edit").children().eq(3).val();
+                entryData.content = $line.find("#content-edit").val();
                 
                 const res = await $.post(`/entry/${entryGrid.entries[this.currentEntry]._id}?_method=PUT`, 
                 {
-                    product: entryData.product,
-                    rating: entryData.rating,
-                    content: entryData.content
+                    ...entryData
                 });
 
                 if (res === "OK") {
                     console.log("Edited entry.");
                     entryGrid.generateEntries();
 
-                    this.updateBasicInfo($line);
-                    this.cancelBasicInfo();
+                    this.updateEntryView($line);
+                    this.cancelEdit();
                 }
                 else {
                     $("#entry-view-info").text("Error: Unable to edit your entry!");
@@ -232,18 +227,19 @@ class App {
         }
     }
 
-    cancelBasicInfo = () => {
-        if (this.editing === "basic info") {
-            this.editing = "none";
+    cancelEdit = () => {
+        if (this.state === "edit") {
+            this.state = "view";
 
             let $line = $(".entry-view").children().eq(0);
 
             $line.find(".read").removeClass("invisible");
             $line.find(".edit").addClass("invisible");
 
-            $line.find(".fa-check").addClass("invisible");
-            $line.find(".fa-times").addClass("invisible");
-            $line.find(".fa-edit").removeClass("invisible");
+            $("#new").addClass("invisible");
+            $("#accept").addClass("invisible");
+            $("#cancel").removeClass("invisible");
+            $("#edit").removeClass("invisible");
         }
     }
 
@@ -273,6 +269,12 @@ class App {
     accept = () => {
         if (this.state === "create") this.sendNew();
         else if (this.state === "filters") this.saveFilters();
+        else if (this.state === "edit") this.saveEdit();
+    }
+
+    cancel = () => {
+        if (this.state === "edit") this.cancelEdit();
+        else this.closeSide();
     }
 }
 

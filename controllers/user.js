@@ -141,7 +141,7 @@ router.get("/", authCheck, async function(req, res) {
         if (foundAccount) {
             res.render("user", {
                 siteTitle: "CPD | Account",
-                user: null
+                user: foundAccount
             });
         }
         else {

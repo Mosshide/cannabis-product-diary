@@ -1,29 +1,45 @@
 <div class="entry-view invisible">
-    <div class="form-line">
+    <div class="entry-line">
         <div class="read">
-            <h2 class="product">Unnamed Entry</h2>
+            <h2 class="left">Title: </h2>
+            <h2 class="right" id="title-read">Entry Name</h2>
             <hr>
-            <div class="rating">
+
+            <h3 class="left">Product: </h3>
+            <h3 class="right" id="product-read">Product Name</h3>
+
+            <h3 class="left">Rating: </h3>
+            <div class="rating right" id="rating-read">
     
             </div>
-            <p class="content">Content:</p>
+
+            <h3 class="left">Content: </h3>
+            <p class="right" id="content-read">Content:</p>
         </div>
 
         <div class="edit invisible">
-            <input type="text" name="produt">
+            <h2 class="left">Title: </h2>
+            <input class="right" type="text" name="title" id="title-edit" placeholder="Unnamed Entry">
             <hr>
-            <div class="rating">
-    
-            </div>
-            <input type="text" name="content">
-        </div>
 
-        <i class="fas fa-check invisible" id="basic-accept"></i>
-        <i class="fas fa-times invisible" id="basic-cancel"></i>
-        <i class="far fa-edit" id="basic-edit"></i>
+            <h3 class="left">Product: </h3>
+            <input class="right" type="text" name="product" id="product-edit" placeholder="Product Name">
+
+            <h3 class="left">Rating: </h3>
+            <div class="rating right" id="rating-edit">
+                <i class="fas fa-cannabis"></i>
+                <i class="fas fa-cannabis"></i>
+                <i class="fas fa-cannabis"></i>
+                <i class="fas fa-cannabis"></i>
+                <i class="fas fa-cannabis"></i>
+            </div>
+
+            <h3 class="left">Content: </h3>
+            <input class="right" type="text" name="content" id="content-edit" placeholder="Write about your experience here.">
+        </div>
     </div>
 
-    <button id="delete-entry">Delete This Entry Forever</button>
+    <button class="hover-bad" id="delete-entry">Delete This Entry Forever</button>
 
     <p id="entry-view-info"></p>
 

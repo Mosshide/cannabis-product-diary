@@ -29,13 +29,14 @@ class EntryGrid {
                     app.openView(i);
                 });
                 $newEntry.children().eq(0).text(`${month}/${day}/${year}`);
-                $newEntry.children().eq(1).text(this.entries[i].product);
+                $newEntry.children().eq(1).text(this.entries[i].title);
+                $newEntry.children().eq(3).text(this.entries[i].product);
                 for (let j = 0; j < 5; j++) {
                     if (j < this.entries[i].rating) {
-                        $newEntry.children().eq(3).append(`<i class="fas fa-cannabis selected"></i>`);
+                        $newEntry.children().eq(4).append(`<i class="fas fa-cannabis selected"></i>`);
                     }
                     else {
-                        $newEntry.children().eq(3).append(`<i class="fas fa-cannabis"></i>`);
+                        $newEntry.children().eq(4).append(`<i class="fas fa-cannabis"></i>`);
                     }
                 }
                 this.$grid.append($newEntry);

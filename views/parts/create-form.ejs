@@ -1,29 +1,32 @@
-<form action="#" method="post" class="create-form invisible">
-    <h2>New Entry</h2>
-    <div class="form-line">
-        <p>Product:</p>
-        <input type="text" id="product" placeholder="Title">
-    </div>
-    <div class="form-line">
-        <p>Rating:</p>
-        <div class="rating">
-            <i class="fas fa-cannabis"></i>
-            <i class="fas fa-cannabis"></i>
-            <i class="fas fa-cannabis"></i>
-            <i class="fas fa-cannabis"></i>
-            <i class="fas fa-cannabis"></i>
+<div class="create-form invisible">
+    <div class="entry-line">
+        <div class="edit">
+            <h2 class="left">Title: </h2>
+            <input class="right" type="text" name="title" id="title-edit" placeholder="Unnamed Entry">
+            <hr>
+
+            <h3 class="left">Product: </h3>
+            <input class="right" type="text" name="product" id="product-edit" placeholder="Product Name">
+
+            <h3 class="left">Rating: </h3>
+            <div class="rating right" id="rating-edit">
+                <i class="fas fa-cannabis"></i>
+                <i class="fas fa-cannabis"></i>
+                <i class="fas fa-cannabis"></i>
+                <i class="fas fa-cannabis"></i>
+                <i class="fas fa-cannabis"></i>
+            </div>
+
+            <h3 class="left">Content: </h3>
+            <input class="right" type="text" name="content" id="content-edit" 
+                placeholder="Write about your experience here.">
         </div>
     </div>
-    <div class="form-line">
-        <p>Content:</p>
-        <input type="text" id="content" placeholder="Describe your experience here.">
-    </div>
-    <div class="form-line">
-        <p id="create-form-info"></p>
-    </div>
+
+    <p id="create-form-info"></p>
 
     <!-- hidden -->
-    <input type="hidden" id="author" value="<%= user %>">
+    <input type="hidden" id="author-edit" value="<%= user %>">
 
     <!-- not yet implemented -->
     <!-- required -->
@@ -32,7 +35,6 @@
 
     <!-- optional -->
     <input type="hidden" id="color" value="">
-    <input type="hidden" id="title" value="">
     <input type="hidden" id="dateOfExperience" value="">
     <input type="hidden" id="timeOfDay" value="">
     <input type="hidden" id="productType" value="">
@@ -55,4 +57,4 @@
     <input type="hidden" id="d9thc" value="">
     <input type="hidden" id="cbd" value="">
     <input type="hidden" id="cbg" value="">
-</form>
+</div>
