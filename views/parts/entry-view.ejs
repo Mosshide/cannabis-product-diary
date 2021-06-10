@@ -1,8 +1,10 @@
 <div class="entry-view invisible">
     <div class="entry-line">
+        <h6 id="author-read">Author: Author's Name</h6>
+
         <div class="read">
-            <h2 class="left">Title: </h2>
-            <h2 class="right" id="title-read">Entry Name</h2>
+            <h2 id="title-read">Entry Name</h2>
+
             <hr>
 
             <h3 class="left">Product: </h3>
@@ -13,11 +15,14 @@
     
             </div>
 
+            <h3 class="left">Date of Experience: </h3>
+            <h3 class="right" id="date-read"></h3>
+
             <h3 class="left">Content: </h3>
-            <p class="right" id="content-read">Content:</p>
+            <p class="right" id="content-read"></p>
 
             <h3 class="left">Visibility: </h3>
-            <h3 class="right" id="public-read">Anyone Can View this Entry</h3>
+            <h3 class="right" id="public-read"></h3>
         </div>
 
         <div class="edit invisible">
@@ -36,6 +41,9 @@
                 <i class="fas fa-cannabis"></i>
                 <i class="fas fa-cannabis"></i>
             </div>
+
+            <h3 class="left">Date of Experience: </h3>
+            <input class="right" type="date" name="dateOfExperience" id="date-edit" placeholder="Date of Experience">
 
             <h3 class="left">Content: </h3>
             <input class="right" type="text" name="content" id="content-edit" placeholder="Write about your experience here.">

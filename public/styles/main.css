@@ -34,6 +34,8 @@ header {
     width: 100%;
     display: flex;
     align-items: center;
+    box-shadow: 1px 1px 1px 1px var(--shadowColor);
+    z-index: 99;
 }
 
 header img {
@@ -251,22 +253,29 @@ form input {
     transition: all .1s ease;
 }
 
-.entry-card h3 {
-    margin: 15px;
+.entry-card h3, h4, h5 {
+    margin: 10px;
 }
 
-.entry-card h4, h5 {
-    margin: 15px 15px;
+h6 {
+    color: var(--lightTextColor);
+    font-size: 15px;
 }
 
 .entry-card h6 {
+    position: absolute;
+    right: 1%;
+    bottom: 1%;
+}
+
+#author-read {
     position: absolute;
     right: 1%;
     top: 1%;
 }
 
 .entry-card .rating {
-    margin: 20px 15px;
+    margin: 10px 15px;
 }
 
 hr {
@@ -292,7 +301,7 @@ hr {
 .entry-line .read, .entry-line .edit {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .entry-line hr {
@@ -304,7 +313,7 @@ hr {
 }
 
 .entry-line .left {
-    margin: 10px;
+    margin: 20px 10px;
     margin-right: 0;
     width: 20%;
 }
@@ -315,8 +324,12 @@ hr {
     width: 70%;
 }
 
+.entry-line h2 {
+    margin: 5px;
+}
+
 .entry-line .info {
-    width:  100%;
+    width: 100%;
     text-align: center;
     color: var(--lightTextColor);
 }
@@ -325,7 +338,6 @@ hr {
     margin: 10px;
     border-left: 2px solid var(--focusColor);
     border-radius: 5px;
-    min-height: 50px;
     padding: 5px;
 }
 
