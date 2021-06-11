@@ -12,6 +12,8 @@ None at this time.
 * Add more fields to CRUD functionality.
 * Improve styling.
 * Add liked system.
+* More error handling, including 404s.
+* Backgrounds and more themes.
 
 ## Wireframe
 ![Wireframe](assets/wireframe.png)
