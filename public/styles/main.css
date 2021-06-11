@@ -413,6 +413,14 @@ hr {
     color: var(--altTextColor);
 }
 
+.lost {
+    padding: 20px;
+}
+
+.lost a {
+    margin: 20px;
+}
+
 
 @media only screen and (max-width: 800px) {
     .gallery-compact {

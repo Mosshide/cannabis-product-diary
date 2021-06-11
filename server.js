@@ -48,6 +48,13 @@ app.get("/", authCheck, async function(req, res) {
     }
 });
 
+app.get("/*", function(req, res) {
+    res.render("lost", {
+        siteTitle: "CPD | Not Found",
+        user: req.session.currentUser
+    });
+})
+
 // start server
 app.listen(process.env.PORT, () => {
     console.log(`Listening for client requests on port ${process.env.PORT}`);

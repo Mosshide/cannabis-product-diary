@@ -12,7 +12,7 @@ None at this time.
 * Add more fields to CRUD functionality.
 * Improve styling.
 * Add liked system.
-* More error handling, including 404s.
+* More error handling.
 * Backgrounds and more themes.
 
 ## Wireframe
