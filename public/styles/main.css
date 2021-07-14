@@ -303,6 +303,10 @@ h6 {
     top: 1%;
 }
 
+#content-read {
+    min-height: 50px;
+}
+
 .entry-card .rating {
     margin: 10px 15px;
 }

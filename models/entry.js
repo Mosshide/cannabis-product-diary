@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const entry = mongoose.model("entries", new mongoose.Schema(
 	{
-		author:  { 
+		author:  { //
 			type: mongoose.Schema.Types.ObjectId, 
 			ref: "users",
 			required: true
@@ -11,19 +11,19 @@ const entry = mongoose.model("entries", new mongoose.Schema(
             type: Boolean,
             required: true
         },
-		isPublic: {
+		isPublic: {//
             type: Boolean,
             required: true
         },
-		product: {
+		product: {//
             type: String,
             required: true
         },
-		content: String,
-		rating: Number,
+		content: String,//
+		rating: Number,//
 		color: String,
-		title: String,
-		dateOfExperience: String,
+		title: String,//
+		dateOfExperience: String,//
 		timeOfDay: String,
 		productType: String,
 		duration: Number,
