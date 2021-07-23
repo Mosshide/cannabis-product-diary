@@ -331,6 +331,10 @@ hr {
     color: var(--lighterAccentColor);
 }
 
+.entry-line {
+    margin-bottom: 60px;
+}
+
 .entry-line .read, .entry-line .edit {
     display: flex;
     flex-wrap: wrap;
@@ -386,7 +390,7 @@ hr {
 }
 
 #delete-entry {
-    position: absolute;
+    position: fixed;
     width: 25%;
     border-radius: 5px;
     left: 20px;
@@ -423,6 +427,33 @@ hr {
 
 .lost a {
     margin: 20px;
+}
+
+.foldable {
+    border: 1px solid var(--textColor);
+    width: 100%;
+    overflow: hidden;
+}
+
+.foldable-header {
+    border-bottom: 1px solid var(--textColor);
+    padding: 20px;
+    width: 100%;
+}
+
+.folder {
+    transition: all .5s ease;
+    height: auto;
+    overflow: hidden;
+}
+
+.folder.closed {
+    transition: all .5s ease;
+    height: 0;
+}
+
+.foldable i {
+    float: right;
 }
 
 

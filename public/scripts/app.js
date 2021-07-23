@@ -194,6 +194,8 @@ class App {
                 }
             });
             this.$side.append($newView);
+
+            $(".foldable-header").on("click", this.toggleFoldable);
         
             this.openSide(false, true);
     
@@ -318,6 +320,10 @@ class App {
     cancel = () => {
         if (this.state === "edit") this.cancelEdit();
         else this.closeSide();
+    }
+
+    toggleFoldable = (event) => {
+        $(event.delegateTarget).next().toggleClass("closed");
     }
 }
 

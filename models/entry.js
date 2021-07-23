@@ -24,27 +24,27 @@ const entry = mongoose.model("entries", new mongoose.Schema(
 		color: String,
 		title: String,//
 		dateOfExperience: String,//
-		timeOfDay: String,
-		productType: String,
-		duration: Number,
-		quantity: Number,
-		quantityType: String,
-		portionSize: Number,
-		portionSizeType: String,
-		price: Number,
-		company: String,
-		store: String,
-		city: String,
-		state: String,
-		country: String,
-		strainType: String,
-		strains: [String],
-		thc: Number,
-		thca: Number,
-		d8thc: Number,
-		d9thc: Number,
-		cbd: Number,
-		cbg: Number
+		timeOfDay: String,//
+		productType: String,//
+		duration: Number,//
+		quantity: Number,//
+		quantityType: String,//included with quantity
+		portionSize: Number,//
+		portionSizeType: String,//included with portion
+		price: Number,//
+		company: String,//
+		store: String,//
+		city: String,//
+		state: String,//
+		country: String,//
+		strainType: String,//
+		strains: [String],//
+		thc: Number,//
+		thca: Number,//
+		d8thc: Number,//
+		d9thc: Number,//
+		cbd: Number,//
+		cbg: Number//
 	},
 	{
 		timestamps: true
