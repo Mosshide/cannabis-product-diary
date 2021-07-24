@@ -399,11 +399,8 @@ hr {
 }
 
 #delete-entry {
-    position: fixed;
     width: 25%;
     border-radius: 5px;
-    left: 20px;
-    bottom: 20px;
     font-weight: bold;
 }
 
