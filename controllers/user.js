@@ -184,7 +184,7 @@ router.post("/reset/:value", async function(req, res) {
                     {
                         siteTitle: "CPD | Reset Password",
                         info: "Error: Password does not meet requirements!",
-                        color: "green",
+                        color: "red",
                         user: null,
                         value: req.params.value
                     });
@@ -194,7 +194,7 @@ router.post("/reset/:value", async function(req, res) {
                     {
                         siteTitle: "CPD | Reset Password",
                         info: "Error: Passwords must match!",
-                        color: "green",
+                        color: "red",
                         user: null,
                         value: req.params.value
                     });
