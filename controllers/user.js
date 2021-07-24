@@ -179,22 +179,44 @@ router.post("/reset/:value", async function(req, res) {
 
         if (foundAccount) {
             if (foundAccount.reset.exp > Date.now()) {
-                foundAccount.reset.value = -1;
-                foundAccount.reset.exp = -1;
+                if (req.body.password.length < 8) {
+                    res.render("reset",
+                    {
+                        siteTitle: "CPD | Reset Password",
+                        info: "Error: Password does not meet requirements!",
+                        color: "green",
+                        user: null,
+                        value: req.params.value
+                    });
+                }
+                else if (req.body.password !== req.body.confirmation) {
+                    res.render("reset",
+                    {
+                        siteTitle: "CPD | Reset Password",
+                        info: "Error: Passwords must match!",
+                        color: "green",
+                        user: null,
+                        value: req.params.value
+                    });
+                }
+                else {
+                    foundAccount.reset.value = -1;
+                    foundAccount.reset.exp = -1;
 
-                const salt = await bcrypt.genSalt(10);
-                const hash = await bcrypt.hash(req.body.password, salt);
-    
-                foundAccount.password = hash;
-                await foundAccount.save();
+                    const salt = await bcrypt.genSalt(10);
+                    const hash = await bcrypt.hash(req.body.password, salt);
+        
+                    foundAccount.password = hash;
+                    await foundAccount.save();
 
-                res.render("reset-confirmation",
-                {
-                    siteTitle: "CPD | Reset Password",
-                    info: "",
-                    color: "green",
-                    user: null
-                });
+                    res.render("reset-confirmation",
+                    {
+                        siteTitle: "CPD | Reset Password",
+                        info: "",
+                        color: "green",
+                        user: null
+                    });
+                }
             }
             else {
                 res.render("reset-request",
