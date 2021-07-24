@@ -179,7 +179,8 @@ router.post("/reset/:value", async function(req, res) {
 
         if (foundAccount) {
             if (foundAccount.reset.exp > Date.now()) {
-                foundAccount.reset.exp = 0;
+                foundAccount.reset.value = -1;
+                foundAccount.reset.exp = -1;
 
                 const salt = await bcrypt.genSalt(10);
                 const hash = await bcrypt.hash(req.body.password, salt);
