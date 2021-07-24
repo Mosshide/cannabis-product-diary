@@ -4,9 +4,10 @@
     /* --textColor: rgb(49, 51, 46); */
     --bgColor: rgb(255, 255, 255);
     --focusColor: rgb(235, 190, 119);
-    --lessTransparentFocusColor: rgba(219, 149, 36, 0.76);
-    --transparentFocusColor: rgba(219, 149, 36, 0.52);
-    --moreTransparentFocusColor: rgba(219, 149, 36, 0.082);
+    --lighterFocusColor: rgb(235, 215, 182);
+    --lessTransparentFocusColor: rgba(235, 190, 119, 0.76);
+    --transparentFocusColor: rgba(235, 190, 119, 0.52);
+    --moreTransparentFocusColor: rgba(235, 190, 119, 0.082);
     --accentColor: rgba(103, 128, 79, 0.466);
     --lighterAccentColor: rgb(84, 141, 62);
     --shadowColor: rgba(71, 71, 71, 0.534);
@@ -23,6 +24,9 @@
 
 body {
     background-color: var(--bgColor);
+    /* background-image: url("/img/diary-bg.jpg");
+    backdrop-filter: blur(5px);
+    background-size: 400px 400px; */
     height: 100vh;
     position: relative;
     display: flex;
@@ -181,7 +185,7 @@ form {
     border-radius: 5px;
 }
 
-input {
+input, textarea {
     border: 1px solid var(--focusColor);
 }
 
@@ -247,7 +251,7 @@ form .form-line {
     margin: 10px;
 }
 
-form input {
+form input, form textarea {
     width: 80%;
     margin: 10px 0;
     padding: 15px;
@@ -266,7 +270,7 @@ form input {
 .entry-card {
     width: 250px;
     height: 200px;
-    background-color: var(--transparentFocusColor);
+    background-color: var(--focusColor);
     box-shadow: 1px 1px 1px 1px var(--shadowColor);
     margin: 5px;
     padding: 10px;
@@ -274,10 +278,11 @@ form input {
     transition: all .5s ease;
     position: relative;
     cursor: pointer;
+    flex-basis: auto;
 }
 
 .entry-card:hover {
-    background-color: var(--moreTransparentFocusColor);
+    background-color: var(--lighterFocusColor);
     transform: scale(1.05);
     transition: all .1s ease;
 }
@@ -301,6 +306,10 @@ h6 {
     position: absolute;
     right: 1%;
     top: 1%;
+}
+
+#content-read {
+    min-height: 50px;
 }
 
 .entry-card .rating {
@@ -327,7 +336,11 @@ hr {
     color: var(--lighterAccentColor);
 }
 
-.entry-line .read, .entry-line .edit {
+.entry-line {
+    margin-bottom: 60px;
+}
+
+.entry-line .read, .entry-line .edit, .entry-line .new {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -342,15 +355,15 @@ hr {
 }
 
 .entry-line .left {
-    margin: 20px 10px;
+    margin: 20px 5px;
     margin-right: 0;
     width: 20%;
 }
 
 .entry-line .right {
-    margin: 10px;
+    margin: 20px 5px;
     margin-left: 5px;
-    width: 70%;
+    width: 75%;
 }
 
 .entry-line h2 {
@@ -361,6 +374,7 @@ hr {
     width: 100%;
     text-align: center;
     color: var(--lightTextColor);
+    margin: 10px;
 }
 
 .entry-line p {
@@ -370,7 +384,10 @@ hr {
     padding: 5px;
 }
 
-.entry-line input[type="text"] {
+.entry-line input[type="text"], 
+.entry-line input[type="number"], 
+.entry-line input[type="date"],
+.entry-line textarea {
     padding: 10px;
     border-radius: 5px;
 }
@@ -382,11 +399,8 @@ hr {
 }
 
 #delete-entry {
-    position: absolute;
     width: 25%;
     border-radius: 5px;
-    left: 20px;
-    bottom: 20px;
     font-weight: bold;
 }
 
@@ -411,6 +425,78 @@ hr {
     background-color: var(--badColor);
     transition: all .2s ease;
     color: var(--altTextColor);
+}
+
+.lost {
+    padding: 20px;
+}
+
+.lost a {
+    margin: 20px;
+}
+
+.foldable {
+    border: 1px solid var(--textColor);
+    width: 100%;
+    overflow: hidden;
+}
+
+.foldable-header {
+    padding: 20px;
+    width: 100%;
+    background-color: var(--transparentFocusColor);
+}
+
+.foldable-header:hover {
+    background-color: var(--focusColor);
+}
+
+.folder {
+    transition: all .5s ease;
+    max-height: 2000px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: flex-start;
+}
+
+.folder.closed {
+    transition: all .5s ease;
+    max-height: 0px;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+        animation-timing-function: ease-out;
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes rotate-back {
+    from {
+        transform: rotate(180deg);
+        animation-timing-function: ease-out;
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.foldable i {
+    float: right;
+    animation-name: rotate-back;
+    animation-duration: .25s;
+    animation-fill-mode: forwards;
+}
+
+.foldable i.rotate {
+    animation-name: rotate;
+    animation-duration: .25s;
+    animation-fill-mode: forwards;
 }
 
 
