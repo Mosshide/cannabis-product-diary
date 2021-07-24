@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const nodemailer = require("nodemailer");
 
 // Import my Data
 const User = require("../models/user.js");
@@ -73,6 +74,154 @@ router.post("/register", async function(req, res) {
         {
             siteTitle: "CPD | Register",
             info: "Registration Failed: Database error!",
+            color: "red",
+            user: null
+        });
+    }
+});
+
+router.get("/reset", function(req, res) {
+    res.render("reset-request",
+    {
+        siteTitle: "CPD | Reset Password",
+        info: "",
+        color: "green",
+        user: null
+    });
+});
+
+router.post("/reset", async function(req, res) {
+    try {
+        const foundAccount = await User.findOne({ email: req.body.email });
+
+        if (foundAccount) {
+            foundAccount.reset = {
+                value: Math.floor(Math.random() * Number.MAX_SAFE_INTEGER),
+                exp: Date.now() + (1000 * 60 * 60 * 24)
+            }
+            await foundAccount.save();
+        
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                  user: 'cpd-noreply@notherbase.com',
+                  pass: process.env.NOREPLYPW
+                }
+            });
+              
+            var mailOptions = {
+                from: 'cpd-noreply@notherbase.com',
+                to: foundAccount.email,
+                subject: 'Password Reset for Cannabis Product Diary',
+                html: `<h2>Please click the link below to reset your password.<h2><br><br><a href="https://cpd.notherbase.com/user/reset/${foundAccount.reset.value}">https://cpd.notherbase.com/user/reset/${foundAccount.reset.value}</a>`
+            };
+            
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                    console.log(error);
+
+                    res.render("reset-request",
+                    {
+                        siteTitle: "CPD | Reset Password",
+                        info: "Reset Failed: Error sending reset link to your email!",
+                        color: "red",
+                        user: null
+                    });
+                } 
+                else {
+                    res.render("reset-sent",
+                    {
+                        siteTitle: "CPD | Reset Password",
+                        info: "",
+                        color: "green",
+                        user: null
+                    });
+                }
+            });
+        }
+        else {
+            res.render("reset-request",
+            {
+                siteTitle: "CPD | Reset Password",
+                info: "Reset Failed: Account does not exist with the email you provided!",
+                color: "red",
+                user: null
+            });
+        }
+    }
+    catch(err) {
+        console.log(err);
+
+        res.render("login.ejs",
+        {
+            siteTitle: "CPD | Login",
+            info: "Reset Failed: Database error!",
+            color: "red",
+            user: null
+        });
+    }
+});
+
+router.get("/reset/:value", function(req, res) {
+    res.render("reset",
+    {
+        siteTitle: "CPD | Reset Password",
+        info: "",
+        color: "green",
+        user: null,
+        value: req.params.value
+    });
+});
+
+router.post("/reset/:value", async function(req, res) {
+    try {
+        const foundAccount = await User.findOne({ "reset.value": req.params.value });
+
+        if (foundAccount) {
+            if (foundAccount.reset.exp > Date.now()) {
+                foundAccount.reset.exp = 0;
+
+                const salt = await bcrypt.genSalt(10);
+                const hash = await bcrypt.hash(req.body.password, salt);
+    
+                foundAccount.password = hash;
+                await foundAccount.save();
+
+                res.render("reset-confirmation",
+                {
+                    siteTitle: "CPD | Reset Password",
+                    info: "",
+                    color: "green",
+                    user: null
+                });
+            }
+            else {
+                res.render("reset-request",
+                {
+                    siteTitle: "CPD | Reset Password",
+                    info: "Reset Failed: Password reset expired or was not requested!",
+                    color: "red",
+                    user: null
+                });
+            }
+        }
+        else {
+            res.render("reset-request",
+            {
+                siteTitle: "CPD | Reset Password",
+                info: "Reset Failed: Password reset expired or was not requested!",
+                color: "red",
+                user: null
+            });
+        }
+    }
+    catch(err) {
+        console.log(err);
+
+        res.render("login.ejs",
+        {
+            siteTitle: "CPD | Login",
+            info: "Reset Failed: Database error!",
             color: "red",
             user: null
         });
