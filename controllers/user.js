@@ -113,7 +113,7 @@ router.post("/reset", async function(req, res) {
                 from: 'cpd-noreply@notherbase.com',
                 to: foundAccount.email,
                 subject: 'Password Reset for Cannabis Product Diary',
-                html: `<h2>Please click the link below to reset your password.<h2><br><br><a href="http://localhost:4337/user/reset/${foundAccount.reset.value}">https://localhost:4337/user/reset/${foundAccount.reset.value}</a>`
+                html: `<h2>Please click the link below to reset your password.<h2><br><br><a href="https://cpd.notherbase.com/user/reset/${foundAccount.reset.value}">https://cpd.notherbase.com/user/reset/${foundAccount.reset.value}</a>`
             };
             
             transporter.sendMail(mailOptions, function(error, info){
