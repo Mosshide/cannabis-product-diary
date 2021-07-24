@@ -1,15 +1,15 @@
 <div class="create-form invisible">
     <div class="entry-line">
-        <div class="edit">
+        <div class="new">
             <h2 class="left">Title: </h2>
-            <input class="right" type="text" name="title" id="title-edit" placeholder="Unnamed Entry">
+            <input class="right" type="text" name="title" id="title-new" placeholder="Unnamed Entry">
             <hr>
 
             <h3 class="left">Product: </h3>
-            <input class="right" type="text" name="product" id="product-edit" placeholder="Product Name">
+            <input class="right" type="text" name="product" id="product-new" placeholder="Product Name">
 
             <h3 class="left">Rating: </h3>
-            <div class="rating right" id="rating-edit">
+            <div class="rating right" id="rating-new">
                 <i class="fas fa-cannabis"></i>
                 <i class="fas fa-cannabis"></i>
                 <i class="fas fa-cannabis"></i>
@@ -18,46 +18,82 @@
             </div>
 
             <h3 class="left">Date of Experience: </h3>
-            <input class="right" type="date" name="dateOfExperience" id="date-edit" placeholder="Date of Experience">
+            <input class="right" type="date" name="dateOfExperience" id="date-new" placeholder="Date of Experience">
 
             <h3 class="left">Content: </h3>
-            <input class="right" type="text" name="content" id="content-edit" 
-                placeholder="Write about your experience here.">
+            <textarea class="right" name="content" id="content-new" 
+                placeholder="Write about your experience here."></textarea>
+
+                <div class="foldable">
+                    <div class="foldable-header">
+                        <i class="fas fa-chevron-circle-down"></i>
+                        <h3>More Details</h3>
+                    </div>
+    
+                    <div class="folder closed">
+                        <h3 class="left">Time of Day: </h3>
+                        <input class="right" type="text" id="time-of-day-new" value="">
+
+                        <h3 class="left">Product Type: </h3>
+                        <input class="right" type="text" id="type-new" value="">
+
+                        <h3 class="left">Duration of Experience (Hours): </h3>
+                        <input class="right" type="number" id="duration-new" value="">
+
+                        <h3 class="left">Quantity: </h3>
+                        <input class="right" type="number" id="quantity-new" value="">
+
+                        <h3 class="left">Portion Size (Grams): </h3>
+                        <input class="right" type="number" id="portion-new" value="">
+
+                        <h3 class="left">Price (USD): </h3>
+                        <input class="right" type="number" id="price-new" value="">
+
+                        <h3 class="left">Company: </h3>
+                        <input class="right" type="text" id="company-new" value="">
+
+                        <h3 class="left">Purchased From: </h3>
+                        <input class="right" type="text" id="store-new" value="">
+
+                        <h3 class="left">City: </h3>
+                        <input class="right" type="text" id="city-new" value="">
+
+                        <h3 class="left">State: </h3>
+                        <input class="right" type="text" id="state-new" value="">
+
+                        <h3 class="left">Country: </h3>
+                        <input class="right" type="text" id="country-new" value="">
+
+                        <h3 class="left">Strain Type: </h3>
+                        <input class="right" type="text" id="strain-type-new" value="">
+
+                        <h3 class="left">Strains: </h3>
+                        <input class="right" type="text" id="strains-new" value="">
+
+                        <h3 class="left">THC (%): </h3>
+                        <input class="right" type="number" id="thc-new" value="">
+
+                        <h3 class="left">THCA (%): </h3>
+                        <input class="right" type="number" id="thca-new" value="">
+
+                        <h3 class="left">d8THC (%): </h3>
+                        <input class="right" type="number" id="d8thc-new" value="">
+
+                        <h3 class="left">d9THC (%): </h3>
+                        <input class="right" type="number" id="d9thc-new" value="">
+
+                        <h3 class="left">CBD (%): </h3>
+                        <input class="right" type="number" id="cbd-new" value="">
+
+                        <h3 class="left">CBG (%): </h3>
+                        <input class="right" type="number" id="cbg-new" value="">
+                    </div>
+                </div>
+        
+            <input type="hidden" id="author-new" value="<%= user %>">
         </div>
     </div>
 
+    
     <p id="create-form-info"></p>
-
-    <!-- hidden -->
-    <input type="hidden" id="author-edit" value="<%= user %>">
-
-    <!-- not yet implemented -->
-    <!-- required -->
-    <input type="hidden" id="isDraft" value="false">
-    <input type="hidden" id="isPublic" value="false">
-
-    <!-- optional -->
-    <input type="hidden" id="color" value="">
-    <input type="hidden" id="dateOfExperience" value="">
-    <input type="hidden" id="timeOfDay" value="">
-    <input type="hidden" id="productType" value="">
-    <input type="hidden" id="duration" value="">
-    <input type="hidden" id="quantity" value="">
-    <input type="hidden" id="quantityType" value="">
-    <input type="hidden" id="portionSize" value="">
-    <input type="hidden" id="portionSizeType" value="">
-    <input type="hidden" id="price" value="">
-    <input type="hidden" id="company" value="">
-    <input type="hidden" id="store" value="">
-    <input type="hidden" id="city" value="">
-    <input type="hidden" id="state" value="">
-    <input type="hidden" id="country" value="">
-    <input type="hidden" id="strainType" value="">
-    <input type="hidden" id="strains" value="">
-    <input type="hidden" id="thc" value="">
-    <input type="hidden" id="thca" value="">
-    <input type="hidden" id="d8thc" value="">
-    <input type="hidden" id="d9thc" value="">
-    <input type="hidden" id="cbd" value="">
-    <input type="hidden" id="cbg" value="">
 </div>

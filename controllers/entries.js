@@ -57,7 +57,7 @@ router.post("/", authCheck, async function(req, res) {
             state: req.body.state,
             country: req.body.country,
             strainType: req.body.strainType,
-            strains: [req.body.strains],
+            strains: req.body.strains,
             thc: req.body.thc,
             thca: req.body.thca,
             d8thc: req.body.d8thc,

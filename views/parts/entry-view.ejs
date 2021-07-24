@@ -37,9 +37,6 @@
                     <h3 class="left">Product Type: </h3>
                     <h3 class="right" id="type-read"></h3>
         
-                    <h3 class="left">Product Type: </h3>
-                    <h3 class="right" id="type-read"></h3>
-        
                     <h3 class="left">Duration of Experience: </h3>
                     <h3 class="right" id="duration-read"></h3>
         
@@ -115,11 +112,77 @@
             <input class="right" type="date" name="dateOfExperience" id="date-edit" placeholder="Date of Experience">
 
             <h3 class="left">Content: </h3>
-            <input class="right" type="text" name="content" id="content-edit" placeholder="Write about your experience here.">
+            <textarea class="right" name="content" id="content-edit" placeholder="Write about your experience here."></textarea>
         
             <h3 class="left">Public: </h3>
             <input class="right" type="checkbox" id="public-edit" name="show-public">
             <h6 class="info">If you check this box, anyone may view this entry. Leave this box unchecked for this entry to be private!</h6>
+        
+            <div class="foldable">
+                <div class="foldable-header">
+                    <i class="fas fa-chevron-circle-down"></i>
+                    <h3>More Details</h3>
+                </div>
+
+                <div class="folder closed">
+                    <h3 class="left">Time of Day: </h3>
+                    <input class="right" type="text" name="time-of-day" id="time-of-day-edit">
+        
+                    <h3 class="left">Product Type: </h3>
+                    <input class="right" type="text" name="type" id="type-edit">
+        
+                    <h3 class="left">Duration of Experience (Hours): </h3>
+                    <input class="right" type="number" name="duration" id="duration-edit">
+        
+                    <h3 class="left">Quantity: </h3>
+                    <input class="right" type="number" name="quantity" id="quantity-edit">
+        
+                    <h3 class="left">Portion Size (Grams): </h3>
+                    <input class="right" type="number" name="portion" id="portion-edit">
+        
+                    <h3 class="left">Price (USD): </h3>
+                    <input class="right" type="number" name="price" id="price-edit">
+        
+                    <h3 class="left">Company: </h3>
+                    <input class="right" type="text" name="company" id="company-edit">
+        
+                    <h3 class="left">Purchased From: </h3>
+                    <input class="right" type="text" name="store" id="store-edit">
+        
+                    <h3 class="left">City: </h3>
+                    <input class="right" type="text" name="city" id="city-edit">
+        
+                    <h3 class="left">State: </h3>
+                    <input class="right" type="text" name="state" id="state-edit">
+        
+                    <h3 class="left">Country: </h3>
+                    <input class="right" type="text" name="country" id="country-edit">
+        
+                    <h3 class="left">Strain Type: </h3>
+                    <input class="right" type="text" name="strain-type" id="strain-type-edit">
+        
+                    <h3 class="left">Strains: </h3>
+                    <input class="right" type="text" name="strains" id="strains-edit">
+        
+                    <h3 class="left">THC (%): </h3>
+                    <input class="right" type="number" name="thc" id="thc-edit">
+        
+                    <h3 class="left">THCA (%): </h3>
+                    <input class="right" type="number" name="thca" id="thca-edit">
+        
+                    <h3 class="left">d8THC (%): </h3>
+                    <input class="right" type="number" name="d8thc" id="d8thc-edit">
+        
+                    <h3 class="left">d9THC (%): </h3>
+                    <input class="right" type="number" name="d9thc" id="d9thc-edit">
+        
+                    <h3 class="left">CBD (%): </h3>
+                    <input class="right" type="number" name="cbd" id="cbd-edit">
+        
+                    <h3 class="left">CBG (%): </h3>
+                    <input class="right" type="number" name="cbg" id="cbg-edit">
+                </div>
+            </div>
         </div>
     </div>
 

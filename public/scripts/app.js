@@ -96,23 +96,44 @@ class App {
         $newForm.find("#date-edit").val(`${now.getFullYear()}-${month}-${date}`);
 
         this.$side.append($newForm);
+
+        $(".foldable-header").on("click", this.toggleFoldable);
     
         this.openSide(true);
     }
 
     sendNew = async () => {
         try {
-            if ($("#product-edit").val()) {
+            if ($("#product-new").val()) {
                 const res = await $.post("/entry", 
                 {
-                    author: $("#author-edit").val(),
+                    author: $("#author-new").val(),
                     isDraft: false,
                     isPublic: false,
-                    product: $("#product-edit").val(),
+                    product: $("#product-new").val(),
                     rating: this.rating.rating,
-                    content: $("#content-edit").val(),
-                    title: $("#title-edit").val(),
-                    dateOfExperience: $("#date-edit").val()
+                    content: $("#content-new").val(),
+                    title: $("#title-new").val(),
+                    dateOfExperience: $("#date-new").val(),
+                    timeOfDay: $("#time-of-day-new").val(),
+                    productType: $("#type-new").val(),
+                    duration: $("#duration-new").val(),
+                    quantity: $("#quantity-new").val(),
+                    portionSize: $("#portion-new").val(),
+                    price: $("#price-new").val(),
+                    company: $("#company-new").val(),
+                    store: $("#store-new").val(),
+                    city: $("#city-new").val(),
+                    state: $("#state-new").val(),
+                    country: $("#country-new").val(),
+                    strainType: $("#strain-type-new").val(),
+                    strains: $("#strains-new").val(),
+                    thc: $("#thc-new").val(),
+                    thca: $("#thca-new").val(),
+                    d8thc: $("#d8thc-new").val(),
+                    d9thc: $("#d9thc-new").val(),
+                    cbd: $("#cbd-new").val(),
+                    cbg: $("#cbg-new").val(),
                 });
     
                 if (res === "OK") {
@@ -138,6 +159,7 @@ class App {
         $parent.find("#author-read").text(`Author: ${entryGrid.entries[this.currentEntry].author.name}`);
 
         $parent.find("#title-read").text(entryGrid.entries[this.currentEntry].title);
+
         $parent.find("#product-read").text(entryGrid.entries[this.currentEntry].product);
 
         let $rating = $parent.find("#rating-read");
@@ -155,8 +177,30 @@ class App {
         $parent.find("#date-read").text(entryGrid.entries[this.currentEntry].dateOfExperience);
 
         $parent.find("#content-read").text(entryGrid.entries[this.currentEntry].content);
+
         if (entryGrid.entries[this.currentEntry].isPublic) $parent.find("#public-read").text("Anyone Can View this Entry");
         else $parent.find("#public-read").text("Only You Can View this Entry");
+
+        $parent.find("#time-of-day-read").text(entryGrid.entries[this.currentEntry].timeOfDay);
+
+        $parent.find("#type-read").text(entryGrid.entries[this.currentEntry].productType);
+        $parent.find("#duration-read").text(entryGrid.entries[this.currentEntry].duration);
+        $parent.find("#quantity-read").text(entryGrid.entries[this.currentEntry].quantity);
+        $parent.find("#portion-read").text(entryGrid.entries[this.currentEntry].portionSize);
+        $parent.find("#price-read").text(entryGrid.entries[this.currentEntry].price);
+        $parent.find("#company-read").text(entryGrid.entries[this.currentEntry].company);
+        $parent.find("#store-read").text(entryGrid.entries[this.currentEntry].store);
+        $parent.find("#city-read").text(entryGrid.entries[this.currentEntry].city);
+        $parent.find("#state-read").text(entryGrid.entries[this.currentEntry].state);
+        $parent.find("#country-read").text(entryGrid.entries[this.currentEntry].country);
+        $parent.find("#strain-type-read").text(entryGrid.entries[this.currentEntry].strainType);
+        $parent.find("#strains-read").text(entryGrid.entries[this.currentEntry].strains);
+        $parent.find("#thc-read").text(entryGrid.entries[this.currentEntry].thc);
+        $parent.find("#thca-read").text(entryGrid.entries[this.currentEntry].thca);
+        $parent.find("#d8thc-read").text(entryGrid.entries[this.currentEntry].d8thc);
+        $parent.find("#d9thc-read").text(entryGrid.entries[this.currentEntry].d9thc);
+        $parent.find("#cbd-read").text(entryGrid.entries[this.currentEntry].cbd);
+        $parent.find("#cbg-read").text(entryGrid.entries[this.currentEntry].cbg);
     }
     
     openView = (entryNumber) => {
@@ -175,8 +219,6 @@ class App {
             this.updateEntryView($newView);
             $newView.find("#delete-entry").on("click", async () => {
                 try {
-                    console.log(entryGrid.entries);
-                    
                     const res = await $.post(`/entry/${entryGrid.entries[this.currentEntry]._id}?_method=DELETE`);
             
                     if (res === "OK") {
@@ -219,8 +261,28 @@ class App {
             $line.find("#product-edit").attr("value", entryGrid.entries[this.currentEntry].product);
             this.rating = new Rating($line.find("#rating-edit"), entryGrid.entries[this.currentEntry].rating);
             $line.find("#date-edit").attr("value", entryGrid.entries[this.currentEntry].dateOfExperience);
-            $line.find("#content-edit").attr("value", entryGrid.entries[this.currentEntry].content);
+            $line.find("#content-edit").text(entryGrid.entries[this.currentEntry].content);
             if (entryGrid.entries[this.currentEntry].isPublic) $line.find("#public-edit").prop("checked", true);
+
+            $line.find("#time-of-day-edit").attr("value", entryGrid.entries[this.currentEntry].timeOfDay);
+            $line.find("#type-edit").attr("value", entryGrid.entries[this.currentEntry].productType);
+            $line.find("#duration-edit").attr("value", entryGrid.entries[this.currentEntry].duration);
+            $line.find("#quantity-edit").attr("value", entryGrid.entries[this.currentEntry].quantity);
+            $line.find("#portion-edit").attr("value", entryGrid.entries[this.currentEntry].portionSize);
+            $line.find("#price-edit").attr("value", entryGrid.entries[this.currentEntry].price);
+            $line.find("#company-edit").attr("value", entryGrid.entries[this.currentEntry].company);
+            $line.find("#store-edit").attr("value", entryGrid.entries[this.currentEntry].store);
+            $line.find("#city-edit").attr("value", entryGrid.entries[this.currentEntry].city);
+            $line.find("#state-edit").attr("value", entryGrid.entries[this.currentEntry].state);
+            $line.find("#country-edit").attr("value", entryGrid.entries[this.currentEntry].country);
+            $line.find("#strain-type-edit").attr("value", entryGrid.entries[this.currentEntry].strainType);
+            $line.find("#strains-edit").attr("value", entryGrid.entries[this.currentEntry].strains);
+            $line.find("#thc-edit").attr("value", entryGrid.entries[this.currentEntry].thc);
+            $line.find("#thca-edit").attr("value", entryGrid.entries[this.currentEntry].thca);
+            $line.find("#d8thc-edit").attr("value", entryGrid.entries[this.currentEntry].d8thc);
+            $line.find("#d9thc-edit").attr("value", entryGrid.entries[this.currentEntry].d9thc);
+            $line.find("#cbd-edit").attr("value", entryGrid.entries[this.currentEntry].cbd);
+            $line.find("#cbg-edit").attr("value", entryGrid.entries[this.currentEntry].cbg);
 
             $("#new").addClass("invisible");
             $("#accept").removeClass("invisible");
@@ -242,7 +304,25 @@ class App {
                     entryData.dateOfExperience = $line.find("#date-edit").val();
                     entryData.content = $line.find("#content-edit").val();
                     entryData.isPublic = $line.find("#public-edit").prop("checked");
-                    console.log($line.find("#public-edit").prop("checked"));
+                    entryData.timeOfDay = $line.find("#time-of-day-edit").val();
+                    entryData.productType = $line.find("#type-edit").val();
+                    entryData.duration = $line.find("#duration-edit").val();
+                    entryData.quantity = $line.find("#quantity-edit").val();
+                    entryData.portionSize = $line.find("#portion-edit").val();
+                    entryData.price = $line.find("#price-edit").val();
+                    entryData.company = $line.find("#company-edit").val();
+                    entryData.store = $line.find("#store-edit").val();
+                    entryData.city = $line.find("#city-edit").val();
+                    entryData.state = $line.find("#state-edit").val();
+                    entryData.country = $line.find("#country-edit").val();
+                    entryData.strainType = $line.find("#strain-type-edit").val();
+                    entryData.strains = $line.find("#strains-edit").val();
+                    entryData.thc = $line.find("#thc-edit").val();
+                    entryData.thca = $line.find("#thca-edit").val();
+                    entryData.d8thc = $line.find("#d8thc-edit").val();
+                    entryData.d9thc = $line.find("#d9thc-edit").val();
+                    entryData.cbd = $line.find("#cbd-edit").val();
+                    entryData.cbg = $line.find("#cbg-edit").val();
                     
                     const res = await $.post(`/entry/${entryGrid.entries[this.currentEntry]._id}?_method=PUT`, 
                     {
@@ -324,6 +404,7 @@ class App {
 
     toggleFoldable = (event) => {
         $(event.delegateTarget).next().toggleClass("closed");
+        $(event.delegateTarget).children().eq(0).toggleClass("rotate");
     }
 }
 

@@ -38,7 +38,7 @@ const entry = mongoose.model("entries", new mongoose.Schema(
 		state: String,//
 		country: String,//
 		strainType: String,//
-		strains: [String],//
+		strains: String,//
 		thc: Number,//
 		thca: Number,//
 		d8thc: Number,//
