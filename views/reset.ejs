@@ -1,0 +1,21 @@
+<%- include("parts/head"); %>
+
+<main class="center-form">
+    <img src="/img/bg.jpg">
+    <div class="fade"></div>
+
+    <form action="/user/reset/<%= value %>" method="POST" class="auth-form">
+        <h2>Please Provide a New Password for Your Account</h2>
+
+        <input type="password" name="password" placeholder="Type Your New Password Here" minlength="8" required>
+        <input type="password" name="confirmation" placeholder="Type Your New Password Here Again" minlength="8" required>
+
+        <p>Your password must be at least 8 characters long and contain letters, numbers or special characters ( !@#$%^&* ).</p>
+        
+        <button>Set New Password</button>
+        <p style="color: <%= color %>;"><%= info %></p>
+        <a href="/user/login">Back to Login</a>
+    </form>
+</main>
+
+<%- include("parts/foot"); %>

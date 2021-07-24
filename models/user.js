@@ -13,7 +13,11 @@ const user = mongoose.model("users", new mongoose.Schema(
         name: String,
         bio: String,
         dateOfBirth: String,
-        location: String
+        location: String,
+        reset: {
+            value: Number,
+            exp: Number
+        }
     },
 	{
 		timestamps: true

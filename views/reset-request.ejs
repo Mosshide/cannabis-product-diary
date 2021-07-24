@@ -3,15 +3,16 @@
 <main class="center-form">
     <img src="/img/bg.jpg">
     <div class="fade"></div>
-    <form action="/user/login" method="POST" class="auth-form">
-        <h2>Please Login</h2>
+
+    <form action="/user/reset" method="POST" class="auth-form">
+        <h2>Please Provide the Email for Your Account</h2>
         <input type="email" name="email" required>
-        <input type="password" name="password" required>
-        <button>Login</button>
+
+        <button>Send Password Reset Link</button>
         <p style="color: <%= color %>;"><%= info %></p>
-        
-        <p>Click <a href="/user/reset">HERE</a> to change your password.</p>
+        <a href="/user/login">Back to Login</a>
     </form>
+
 </main>
 
 <%- include("parts/foot"); %>
