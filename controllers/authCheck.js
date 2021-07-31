@@ -3,7 +3,7 @@ const authCheck = function authCheck(req, res, next){
         next();
     }
     else{
-        res.redirect("/user/login");
+        res.redirect("/");
     }
 }
 

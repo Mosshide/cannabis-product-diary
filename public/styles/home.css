@@ -1,0 +1,148 @@
+:root {
+    --altTextColor: rgb(255, 255, 255);
+    --textColor: rgb(64, 66, 61);
+    --bgColor: rgb(241, 241, 241);
+    --focusColor: rgb(235, 190, 119);
+    --lighterFocusColor: rgb(235, 215, 182);
+    --lessTransparentFocusColor: rgba(235, 190, 119, 0.76);
+    --transparentFocusColor: rgba(235, 190, 119, 0.52);
+    --moreTransparentFocusColor: rgba(235, 190, 119, 0.082);
+    --accentColor: rgba(103, 128, 79, 0.466);
+    --lighterAccentColor: rgb(84, 141, 62);
+    --shadowColor: rgba(71, 71, 71, 0.534);
+    --darkShadowColor: rgba(71, 71, 71, 0.329);
+    --lightTextColor: rgb(78, 78, 78);
+    --badColor: rgb(141, 0, 0);
+    --h1Size: 2em;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: var(--textColor);
+}
+
+body {
+    background-color: var(--bgColor);
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+header {
+    background-color: var(--focusColor);
+    height: 64px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-shadow: 1px 1px 1px 1px var(--shadowColor);
+    z-index: 99;
+}
+
+header img {
+    width: 64px;
+}
+
+header h1 {
+    flex-grow: 10;
+}
+
+header .options {
+    flex-grow: 1;
+    font-size: 20px;
+    text-align: right;
+    margin-right: 10px
+}
+
+header a {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+header a:hover {
+    color: var(--altTextColor);
+    transition: all .20s ease;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    position: relative;
+    overflow: hidden;
+}
+
+.cover {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+    color: var(--altTextColor);
+}
+
+.cover h2 {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    color: var(--altTextColor);
+    font-size: calc(var(--h1Size) * 2);
+}
+
+.cover p {
+    position: absolute;
+    top: calc(20% + (var(--h1Size) * 2));
+    left: calc(10% + 15px);
+    width: 70%;
+    color: var(--altTextColor);
+    font-size: calc(var(--h1Size));
+}
+
+.splash {
+    position: absolute;
+    z-index: -2;
+    width: 100%;
+    height: auto;
+    filter: blur(5px);
+    object-fit: cover;
+}
+
+.fade {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: var(--darkShadowColor);
+}
+
+.examples {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+    color: var(--altTextColor);
+    background-color: var(--focusColor);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    width: 100%;
+    height: 30px;
+    background-color: var(--focusColor);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -1px -1px 1px 1px var(--shadowColor);
+}
+
+
+@media only screen and (max-width: 800px) {
+
+}
