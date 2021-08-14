@@ -39,6 +39,10 @@ header {
     align-items: center;
     box-shadow: 1px 1px 1px 1px var(--shadowColor);
     z-index: 99;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
 header img {
@@ -131,10 +135,32 @@ main {
     align-items: center;
 }
 
+.invert {
+    flex-direction: row-reverse;
+    background-color: var(--lighterFocusColor);
+}
+
+.examples p {
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    font-size: 1.3em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.examples img {
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+}
+
 footer {
     width: 100%;
     height: 30px;
-    background-color: var(--focusColor);
+    background-color: var(--shadowColor);
     display: flex;
     align-content: center;
     justify-content: center;
@@ -142,7 +168,13 @@ footer {
     box-shadow: -1px -1px 1px 1px var(--shadowColor);
 }
 
+footer a {
+    margin: 5px;
+}
+
 
 @media only screen and (max-width: 800px) {
-
+    .invert {
+        flex-direction: row;
+    }
 }

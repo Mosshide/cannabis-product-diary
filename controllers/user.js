@@ -269,7 +269,7 @@ router.post("/login", async function(req, res) {
             if (await bcrypt.compare(req.body.password, foundAccount.password)) {
                 req.session.currentUser = foundAccount._id;
 
-                res.redirect("/");
+                res.redirect("/diary");
             }
             else {
                 res.render("login.ejs",
