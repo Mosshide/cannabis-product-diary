@@ -308,7 +308,7 @@ router.get("/logout", async function(req, res) {
     try {
         await req.session.destroy();
 
-        res.redirect("/user/login");
+        res.redirect("/");
     }
     catch {
         console.log(err);

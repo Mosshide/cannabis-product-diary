@@ -151,6 +151,10 @@ main {
     align-items: center;
 }
 
+.examples a {
+    margin: 10px;
+}
+
 .examples img {
     width: 300px;
     height: 300px;
@@ -160,7 +164,7 @@ main {
 footer {
     width: 100%;
     height: 30px;
-    background-color: var(--shadowColor);
+    background-color: var(--focusColor);
     display: flex;
     align-content: center;
     justify-content: center;
