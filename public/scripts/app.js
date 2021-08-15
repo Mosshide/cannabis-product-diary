@@ -178,8 +178,8 @@ class App {
 
         $parent.find("#content-read").text(entryGrid.entries[this.currentEntry].content);
 
-        if (entryGrid.entries[this.currentEntry].isPublic) $parent.find("#public-read").text("Anyone Can View this Entry");
-        else $parent.find("#public-read").text("Only You Can View this Entry");
+        if (entryGrid.entries[this.currentEntry].isPublic) $parent.find("#public-read").text("Yes, Anyone Can View this Entry");
+        else $parent.find("#public-read").text("No, Only You Can View this Entry");
 
         $parent.find("#time-of-day-read").text(entryGrid.entries[this.currentEntry].timeOfDay);
 

@@ -34,10 +34,22 @@ app.use("/user", controllers.user);
 
 app.use("/entry", authCheck, controllers.entries);
 
-app.get("/", authCheck, async function(req, res) {
+app.get("/diary", authCheck, async function(req, res) {
     try {
         const foundAccount = await User.findOne({ _id: req.session.currentUser });
 
+        res.render("diary", {
+            siteTitle: "CPD",
+            user: req.session.currentUser
+        });
+    }
+    catch(err) {
+        console.log(err);
+    }
+});
+
+app.get("/", async function(req, res) {
+    try {
         res.render("index", {
             siteTitle: "CPD",
             user: req.session.currentUser

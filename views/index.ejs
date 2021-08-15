@@ -1,33 +1,84 @@
-<%- include("parts/head"); %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<main>
-    <section class="gallery">
-        <h2>Entries</h2>
-        <button>Filter</button>
-        <hr>
-        
-        <div class="entry-grid">
-            <!-- template for entry -->
-            <%- include("parts/entry-card"); %>
-        </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/styles/home.css">
 
-        <!-- script to generate entries -->
-        <script src="scripts/generate-entries.js"></script>
-    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/scripts/app.js" defer></script>
 
-    <!-- templates for dynamic content in the aside -->
-    <%- include("parts/create-form"); %>
-    <%- include("parts/entry-view"); %>
-    <%- include("parts/filters"); %>
-    <section class="side">
-    </section>
+    <title><%= siteTitle %></title>
+</head>
+<body>
+    <header>
+        <img src="/img/logo.png">
+        <h1>Cannabis Product Diary</h1>
 
-    <section class="button-holder">
-        <button class="invisible" id="accept"><i class="fas fa-check"></i></button>
-        <button class="invisible" id="edit"><i class="fas fa-edit"></i></button>
-        <button class="invisible hover-bad" id="cancel"><i class="fas fa-times"></i></button>
-        <button id="new"><i class="fas fa-plus"></i></button>
-    </section>
-</main>
+        <%  if (user) { %>
+            <div class="options">
+                <a href="/diary">Diary</a> | <a href="/user">Account</a> | <a href="/user/logout">Logout</a>
+            </div>
+        <%  }
+        else { %>
+            <div class="options">
+                <a href="/user/login">Login</a> | <a href="/user/register">Register</a>
+            </div>
+        <%  } %>
 
-<%- include("parts/foot"); %>
+    </header>
+
+    <main>
+        <section class="cover">
+            <img class="splash" src="/img/bg.jpg">
+            <div class="fade"></div>
+            <h2>What is Cannabis Product Diary?</h2>
+            <p>
+                Cannabis affects everyone differently.<br><br>
+                
+                Cannabis Product Diary focuses on you.
+            </p>
+        </section>
+
+        <section class="examples">
+            <p>
+                Record your personal experiences with your specific products to 
+                become more informed about how cannabis affects your body.
+            </p>
+            <img src="/img/logo.png">
+        </section>
+
+        <section class="examples invert">
+            <p>
+                Remember where you bought that crazy infused joint.
+            </p>
+            <img src="/img/logo.png">
+        </section>
+
+        <section class="examples">
+            <p>
+                Avoid strains with negative effects.
+            </p>
+            <img src="/img/logo.png">
+        </section>
+
+        <section class="examples invert">
+            <p>
+                Ready to write? Create a free account and start today!
+            </p>
+            <p>
+                <a href="/user/login">Login</a> | <a href="/user/register">Register</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made by </p><a href="https://www.linkedin.com/in/wyatt-sushinsky/">Wyatt Sushinsky</a>
+    </footer>
+</body>
+</html>
