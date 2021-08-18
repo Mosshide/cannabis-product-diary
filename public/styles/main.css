@@ -20,6 +20,7 @@
     margin: 0;
     padding: 0;
     color: var(--textColor);
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -47,9 +48,15 @@ header img {
     width: 64px;
 }
 
-header h1 {
+header .return {
     flex-grow: 10;
-    /* text-shadow: 2px 2px 1px var(--shadowColor); */
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+header h1 {
+    display: inline;
 }
 
 header .options {
@@ -275,12 +282,12 @@ form p, form h2 {
     align-content: flex-start;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 10px;
+    padding: 10px 0;
 }
 
 .entry-card {
-    width: 250px;
-    height: 200px;
+    width: 300px;
+    height: 250px;
     background-color: var(--focusColor);
     box-shadow: 1px 1px 1px 1px var(--shadowColor);
     margin: 5px;
@@ -369,6 +376,7 @@ hr {
     margin: 20px 5px;
     margin-right: 0;
     width: 30%;
+    font-size: 1.2em;
 }
 
 .entry-line .right {
@@ -376,7 +384,7 @@ hr {
     margin-left: 5px;
     width: 65%;
     font-weight: normal;
-    font-size: 1em;
+    font-size: 16px;
 }
 
 .entry-line h2 {
