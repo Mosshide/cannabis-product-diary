@@ -21,6 +21,7 @@
     margin: 0;
     padding: 0;
     color: var(--textColor);
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -49,8 +50,15 @@ header img {
     width: 64px;
 }
 
-header h1 {
+header .return {
     flex-grow: 10;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+header h1 {
+    display: inline;
 }
 
 header .options {
@@ -144,6 +152,7 @@ main {
     width: 300px;
     height: 300px;
     padding: 10px;
+    margin: 0 40px;
     font-size: 1.3em;
     display: flex;
     align-content: center;
@@ -156,9 +165,10 @@ main {
 }
 
 .examples img {
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: auto;
     border-radius: 5px;
+    margin: 0 50px;
 }
 
 footer {
@@ -180,5 +190,9 @@ footer a {
 @media only screen and (max-width: 800px) {
     .invert {
         flex-direction: row;
+    }
+
+    header h1 {
+        display: none;
     }
 }
