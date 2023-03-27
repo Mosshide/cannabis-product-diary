@@ -81,6 +81,7 @@ footer {
     justify-content: center;
     align-items: center;
     box-shadow: -1px -1px 1px 1px var(--shadowColor);
+    background: rgb(197, 159, 98);
 }
 
 footer a {
@@ -91,7 +92,7 @@ footer a {
     width: 100px;
     height: 100px;
     position: absolute;
-    bottom: 20px;
+    bottom: 90px;
     color: var(--altTextColor);
     left: calc(50% - 50px);
     font-size: 100px;
