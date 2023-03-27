@@ -1,0 +1,139 @@
+header {
+    position: fixed;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    height: initial;
+}
+
+.cover {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    color: var(--altTextColor);
+}
+
+.cover h2 {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    color: var(--altTextColor);
+    font-size: calc(var(--h1Size) * 2);
+}
+
+.cover p {
+    position: absolute;
+    top: calc(20% + (var(--h1Size) * 2));
+    left: calc(10% + 15px);
+    width: 70%;
+    color: var(--altTextColor);
+    font-size: calc(var(--h1Size));
+}
+
+.examples {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+    color: var(--altTextColor);
+    background-color: var(--focusColor);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.invert {
+    flex-direction: row-reverse;
+    background-color: var(--lighterFocusColor);
+}
+
+.examples p {
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    margin: 0 40px;
+    font-size: 1.3em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.examples a {
+    margin: 10px;
+}
+
+.examples img {
+    width: 500px;
+    height: auto;
+    border-radius: 5px;
+    margin: 0 50px;
+}
+
+footer {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -1px -1px 1px 1px var(--shadowColor);
+}
+
+footer a {
+    margin: 5px;
+}
+
+.cover #scrollPast {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 20px;
+    color: var(--altTextColor);
+    left: calc(50% - 50px);
+    font-size: 100px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.cover #scrollPast:hover {
+    color: var(--focusColor);
+}
+
+
+@media only screen and (max-width: 800px) {
+    .examples {
+        flex-direction: column-reverse;
+        padding: 10px;
+    }
+
+    header h1 {
+        display: none;
+    }
+
+    .cover h2 {
+        top: 100px;
+        font-size: 50px;
+        line-height: 53px;
+        left: 30px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .cover p {
+        line-height: 33px;
+        left: 30px;
+        width: calc(100% - 60px);
+        font-size: 25px;
+        top: 300px;
+    }
+
+    .examples img {
+        width: 90%;
+        height: 50%;
+        object-fit: contain;
+    }
+}

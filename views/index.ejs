@@ -1,90 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include("parts/head"); %>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles/index.css">
+<main>
+    <section class="cover">
+        <img class="splash" src="/img/bg.jpg">
+        <div class="fade"></div>
+        <h2>Cannabis Product Diary</h2>
+        <p>
+            Cannabis affects everyone differently.<br><br>
+            
+            Cannabis Product Diary focuses on you.
+        </p>
+        <div id="scrollPast" onclick="scrollPastCover()">&#8650;</div>
+    </section>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
-    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/styles/home.css">
+    <section class="examples">
+        <p>
+            Record your personal experiences with your specific products to 
+            become more informed about how cannabis affects your body.
+        </p>
+        <img src="/img/phone_ss.png">
+    </section>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="/scripts/app.js" defer></script>
+    <section class="examples invert">
+        <p>
+            Remember where you bought that crazy infused joint or 
+            avoid strains with negative effects.
+        </p>
+        <img src="/img/monitor.png">
+    </section>
 
-    <title><%= siteTitle %></title>
-</head>
-<body>
-    <header>
-        <a href="/" class="return">
-            <img src="/img/logo.png">
-            <h1>Cannabis Product Diary</h1>
-        </a>
+    <section class="examples">
+        <p>
+            Ready to write? Create a free account and start today!
+        </p>
+        <p>
+            <a href="/user/login">Login</a> | <a href="/user/register">Register</a>
+        </p>
+    </section>
+</main>
 
-        <%  if (user) { %>
-            <div class="options">
-                <a href="/diary">Diary</a> | <a href="/user">Account</a> | <a href="/user/logout">Logout</a>
-            </div>
-        <%  }
-        else { %>
-            <div class="options">
-                <a href="/user/login">Login</a> | <a href="/user/register">Register</a>
-            </div>
-        <%  } %>
+<footer>
+    <p>Made by </p><a href="https://www.linkedin.com/in/wyatt-sushinsky/">Wyatt Sushinsky</a>
+</footer>
 
-    </header>
+<script>
+    const scrollPastCover = function scrollPastCover() {
+        $('html,body').animate({
+            scrollTop: $('.examples').offset().top - 64
+        },'slow');
+    }    
+</script>
 
-    <main>
-        <section class="cover">
-            <img class="splash" src="/img/bg.jpg">
-            <div class="fade"></div>
-            <h2>What is Cannabis Product Diary?</h2>
-            <p>
-                Cannabis affects everyone differently.<br><br>
-                
-                Cannabis Product Diary focuses on you.
-            </p>
-        </section>
-
-        <section class="examples">
-            <p>
-                Record your personal experiences with your specific products to 
-                become more informed about how cannabis affects your body.
-            </p>
-            <img src="/img/monitor.png">
-        </section>
-
-        <section class="examples invert">
-            <p>
-                Remember where you bought that crazy infused joint.
-            </p>
-            <img src="/img/monitor.png">
-        </section>
-
-        <section class="examples">
-            <p>
-                Avoid strains with negative effects.
-            </p>
-            <img src="/img/monitor.png">
-        </section>
-
-        <section class="examples invert">
-            <p>
-                Ready to write? Create a free account and start today!
-            </p>
-            <p>
-                <a href="/user/login">Login</a> | <a href="/user/register">Register</a>
-            </p>
-        </section>
-    </main>
-
-    <footer>
-        <p>Made by </p><a href="https://www.linkedin.com/in/wyatt-sushinsky/">Wyatt Sushinsky</a>
-    </footer>
-</body>
-</html>
+<%- include("parts/foot"); %>

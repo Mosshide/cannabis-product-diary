@@ -54,7 +54,7 @@ router.post("/register", async function(req, res) {
                     location: ""
                 });
         
-                res.redirect("/");
+                res.redirect("/user/login");
             }
         }
         else {
@@ -104,16 +104,19 @@ router.post("/reset", async function(req, res) {
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                  user: 'cpd-noreply@notherbase.com',
+                  user: process.env.NOREPLY,
                   pass: process.env.NOREPLYPW
                 }
             });
               
             var mailOptions = {
-                from: 'cpd-noreply@notherbase.com',
+                from: process.env.NOREPLY   ,
                 to: foundAccount.email,
                 subject: 'Password Reset for Cannabis Product Diary',
-                html: `<h2>Please click the link below to reset your password.<h2><br><br><a href="https://cpd.notherbase.com/user/reset/${foundAccount.reset.value}">https://cpd.notherbase.com/user/reset/${foundAccount.reset.value}</a>`
+                html: `<h2>Please click the link below to reset your password.<h2>
+                        <br><br>
+                        <a href="https://cpd.notherbase.com/user/reset/${foundAccount.reset.value}">
+                            https://cpd.notherbase.com/user/reset/${foundAccount.reset.value}</a>`
             };
             
             transporter.sendMail(mailOptions, function(error, info){
