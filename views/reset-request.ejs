@@ -1,14 +1,12 @@
 <%- include("parts/head"); %>
 
 <main class="center-form">
-    <img src="/img/bg.jpg">
-    <div class="fade"></div>
-
     <form action="/user/reset" method="POST" class="auth-form">
-        <h2>Please Provide the Email for Your Account</h2>
-        <input type="email" name="email" required>
+        <h2 style="color: var(--textColor);">Reset Your Password</h2>
+        <p style="color: var(--textColor);">Please provide the email address connected to your account:</p>
+        <input type="email" name="email" placeholder="e@mail.com" required>
 
-        <button>Send Password Reset Link</button>
+        <button style="padding: 10px; width: 250px;">Send Password Reset Link</button>
         <p style="color: <%= color %>;"><%= info %></p>
         <a href="/user/login">Back to Login</a>
     </form>
