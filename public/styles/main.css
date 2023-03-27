@@ -110,6 +110,7 @@ main {
     right: 0;
     bottom: 0;
     padding: 20px;
+    z-index: 11;
 }
 
 button {
@@ -167,6 +168,7 @@ h2 {
     border-radius: 5px;
     height: 35px;
     width: 75px;
+    z-index: 9;
 }
 
 .side {
@@ -180,6 +182,7 @@ h2 {
     left: 100%;
     transition: all .5s ease;
     overflow: auto;
+    z-index: 10;
 }
 
 .side-out {
@@ -572,5 +575,9 @@ footer {
 
     .side-out {
         left: 0;
+    }
+
+    .account-form {
+        margin: 5px;
     }
 }

@@ -54,7 +54,7 @@ router.post("/register", async function(req, res) {
                     location: ""
                 });
         
-                res.redirect("/");
+                res.redirect("/user/login");
             }
         }
         else {
